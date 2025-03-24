@@ -44,6 +44,16 @@
               </a>
             </li>
 
+            <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+              <a class="nav-link" [routerLink]="['/media/bookmarks']" routerLinkActive #bookmarks="routerLinkActive">
+                <!-- Relevant SVG -->
+                <svg width="22" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <path *ngIf="bookmarks.isActive" d="M5 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v18l-7-3-7 3V3z" fill="#FFF"/>
+                  <path *ngIf="!bookmarks.isActive" d="M5 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v18l-7-3-7 3V3z" fill="#5A698F"/>
+                </svg>
+              </a>
+            </li>
+
         </ul>
       </div>
 
