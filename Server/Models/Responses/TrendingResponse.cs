@@ -9,6 +9,18 @@ public class TrendingResponse {
         The Movie Database's API. Be sure to use the [JsonPropertyName("<property>")] attribue
         above each of your C# properties to ensure that the JSON maps properly to your objects.
     */
+
+    [JsonPropertyName("page")]
+    public int Page { get; set; }
+
+    [JsonPropertyName("results")]
+    public List<Trending> Results { get; set; }
+
+    [JsonPropertyName("total_pages")]
+    public int TotalPages { get; set; }
+
+    [JsonPropertyName("total_results")]
+    public int TotalResults { get; set; }
 }
 
 public class Trending : ApiMediaItem {
@@ -18,4 +30,12 @@ public class Trending : ApiMediaItem {
         The Movie Database's API. Be sure to use the [JsonPropertyName("<property>")] attribue
         above each of your C# properties to ensure that the JSON maps properly to your objects.
     */
+
+    public bool Adult { get; set; }
+    public string BackdropPath { get; set; }
+    public string Title { get; set; }
+    public string MediaType { get; set; }
+    public string ReleaseDate { get; set; }
+    public bool Video { get; set; }
+
 }

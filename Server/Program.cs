@@ -13,6 +13,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+// Add AutoMapper
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Use sessions for user authorization
 builder.Services.AddSession(options => {
