@@ -1,26 +1,20 @@
+using System.Configuration;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using PlotPocket.Server.Data;
 using PlotPocket.Server.Models.Dtos;
 using PlotPocket.Server.Models.Entities;
 using PlotPocket.Server.Models.Responses;
+using Server.Data;
 
 namespace PlotPocket.Server.Services;
 
 public class ShowService {
-    /*
-        TODO:
-        Declare appropriate instance variables needed to:
-            - Access the database
-            - Access the appsettings.json coniguration file so as to reach the
-                TMDB property we created there.
-    */
+    private readonly ApplicationDbContext _context;
+    private readonly string? _TMDB;
 
-    public ShowService(/* Use dependency injection to pass in necessary objects */) {
-        /*
-            TODO:
-            Set instance variables accordingly.
-        */
+    public ShowService(IConfiguration configuration, ApplicationDbContext context) {
+        _TMDB = configuration["TMDB"];
+        _context = context;
     }
 
     /**
@@ -31,7 +25,8 @@ public class ShowService {
      *          You should **NOT** need to modify anything else.
      * 
      **/
-    public ShowDto MediaItemToShowDto(MediaItem mediaItem, string? userId) {
+     
+    public ShowDto MediaItemToShowDto(ApiMediaItem mediaItem, string? userId) {
         string? dateToParse = mediaItem switch {
             Movie movie => movie.ReleaseDate,
             TvShow tvShow => tvShow.FirstAirDate,
@@ -39,7 +34,9 @@ public class ShowService {
             _ => null
         };
 
-        var date = DateTime.TryParse(dateToParse, out DateTime parsedDate) ? parsedDate : (DateTime?)null;        
+        var date = DateTime.TryParse(dateToParse, out DateTime parsedDate) ? parsedDate : (DateTime?)null;
+
+        int existingShowId = null != userId ? this.ShowExistsForLoggedInUser(mediaItem.Id, userId) : 0;
         
         string? title;
         if(mediaItem is Trending trendingMedia) {
@@ -52,12 +49,13 @@ public class ShowService {
         return new ShowDto {
             Id = mediaItem.Id,
             Type = mediaItem is Trending trendingItem ? trendingItem.MediaType : (mediaItem is Movie ? "Movie" : "TV Show"),
-            Title = /* TODO: Set value */,
-            Date = /* TODO: Set value */,
-            PosterPath = /* TODO: Set value */
+            Title = title,
+            Date = date,
+            PosterPath = mediaItem.PosterPath
         };
     }
 
+/*
     public ShowDto ShowToShowDto(Show show){
         // TODO: Implement
     }    
@@ -68,6 +66,16 @@ public class ShowService {
 
     public ShowDto TvShowToShowDto(TvShow tvShow) {
         // TODO: Implement
+    }
+*/
+
+    public int ShowExistsForLoggedInUser(int showApiId, string? userId) {
+        int existingShowId = 0;
+        if (null != userId) {
+            // TODO: Implement
+        }
+
+        return existingShowId;
     }
     
 }

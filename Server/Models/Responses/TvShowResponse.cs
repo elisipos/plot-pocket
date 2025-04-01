@@ -9,6 +9,18 @@ public class TvShowResponse {
         The Movie Database's API. Be sure to use the [JsonPropertyName("<property>")] attribue
         above each of your C# properties to ensure that the JSON maps properly to your objects.
     */
+
+    [JsonPropertyName("page")]
+    public int Page { get; set; }
+
+    [JsonPropertyName("results")]
+    public List<Trending> Results { get; set; }
+
+    [JsonPropertyName("total_pages")]
+    public int TotalPages { get; set; }
+
+    [JsonPropertyName("total_results")]
+    public int TotalResults { get; set; }
 }
 
 
@@ -19,4 +31,19 @@ public class TvShow : ApiMediaItem {
         The Movie Database's API. Be sure to use the [JsonPropertyName("<property>")] attribue
         above each of your C# properties to ensure that the JSON maps properly to your objects.
     */
+
+    [JsonPropertyName("backdrop_path")]
+    public string BackdropPath { get; set; }
+
+    [JsonPropertyName("first_air_date")]
+    public string FirstAirDate { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
+
+    [JsonPropertyName("origin_country")]
+    public string OriginCountry { get; set; }
+
+    [JsonPropertyName("original_name")]
+    public string OriginalName { get; set; }
 }

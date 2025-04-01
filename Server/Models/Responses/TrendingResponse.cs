@@ -31,11 +31,37 @@ public class Trending : ApiMediaItem {
         above each of your C# properties to ensure that the JSON maps properly to your objects.
     */
 
+    [JsonPropertyName("adult")]
     public bool Adult { get; set; }
+
+    [JsonPropertyName("backdrop_path")]
     public string BackdropPath { get; set; }
+
+    [JsonPropertyName("title")]
     public string Title { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
+
+    [JsonPropertyName("media_type")]
     public string MediaType { get; set; }
+
+    [JsonPropertyName("release_date")]
     public string ReleaseDate { get; set; }
+
+    [JsonPropertyName("video")]
     public bool Video { get; set; }
+
+    [JsonPropertyName("first_air_date")]
+    public string FirstAirDate { get; set; }
+
+    [JsonPropertyName("origin_country")]
+    public string OriginCountry { get; set; }
+
+    [JsonPropertyName("original_language")]
+    public string OriginalLanguage { get; set; }
+
+    [JsonPropertyName("original_name")]
+    public string OriginalName { get; set; }
 
 }
