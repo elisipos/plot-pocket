@@ -9,12 +9,15 @@ using Server.Data;
 namespace PlotPocket.Server.Services;
 
 public class ShowService {
-    private readonly ApplicationDbContext _context;
-    private readonly string? _TMDB;
+    //private readonly ApplicationDbContext _context;
+    private readonly string? _SecureImgUrl;
+    private readonly string? _OriginalImgSize;
+    private readonly string? _SmallImgSize;
 
-    public ShowService(IConfiguration configuration, ApplicationDbContext context) {
-        _TMDB = configuration["TMDB"];
-        _context = context;
+    public ShowService(IConfiguration configuration/* , ApplicationDbContext context */) {
+        _SecureImgUrl = configuration["TMDB:Images:SecureBaseUrl"];
+        _SmallImgSize = configuration["TMDB:Images:BackdropSizes:Small"];
+        /* _context = context; */
     }
 
     /**
@@ -51,7 +54,7 @@ public class ShowService {
             Type = mediaItem is Trending trendingItem ? trendingItem.MediaType : (mediaItem is Movie ? "Movie" : "TV Show"),
             Title = title,
             Date = date,
-            PosterPath = mediaItem.PosterPath
+            PosterPath = _SecureImgUrl + _SmallImgSize + mediaItem.PosterPath
         };
     }
 

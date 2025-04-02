@@ -21,7 +21,7 @@ namespace Server.Controllers
             _ShowService = ShowService;
         }
 
-        [HttpGet("trending/all")]
+        [HttpGet("all")]
         public async Task<ActionResult<ICollection<ShowDto>>> GetTrendingAll() {
             TrendingResponse mediaItems = await _TMDBService.GetTrendingShowsAsync();
 

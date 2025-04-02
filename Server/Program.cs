@@ -18,6 +18,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddSingleton<ShowService>();
+builder.Services.AddSingleton<TMDBService>();
 
 // Use sessions for user authorization
 builder.Services.AddSession(options => {
