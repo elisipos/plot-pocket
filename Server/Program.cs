@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PlotPocket.Server.Models.Entities;
 using PlotPocket.Server.Services;
 using Server.Data;
 
@@ -14,10 +15,22 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureApplicationCookie(options => {
+    options.Events.OnRedirectToLogin = context => {
+        if (context.Request.Path.StartsWithSegments("/api")) {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return Task.CompletedTask;
+        }
+        context.Response.Redirect(context.RedirectUri);
+        return Task.CompletedTask;
+    };
+});
+
 // Add AutoMapper
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-builder.Services.AddSingleton<ShowService>();
+builder.Services.AddScoped<ShowService>();
 builder.Services.AddSingleton<TMDBService>();
 
 // Use sessions for user authorization
