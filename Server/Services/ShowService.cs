@@ -1,4 +1,5 @@
 using System.Configuration;
+using AutoMapper;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using PlotPocket.Server.Models.Dtos;
@@ -9,15 +10,17 @@ using Server.Data;
 namespace PlotPocket.Server.Services;
 
 public class ShowService {
-    //private readonly ApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
+    private readonly IMapper _mapper;
     private readonly string? _SecureImgUrl;
     private readonly string? _OriginalImgSize;
     private readonly string? _SmallImgSize;
 
-    public ShowService(IConfiguration configuration/* , ApplicationDbContext context */) {
+    public ShowService(IConfiguration configuration, IMapper mapper, ApplicationDbContext context) {
         _SecureImgUrl = configuration["TMDB:Images:SecureBaseUrl"];
         _SmallImgSize = configuration["TMDB:Images:BackdropSizes:Small"];
-        /* _context = context; */
+        _mapper = mapper;
+        _context = context;
     }
 
     /**
@@ -58,24 +61,22 @@ public class ShowService {
         };
     }
 
-/*
     public ShowDto ShowToShowDto(Show show){
-        // TODO: Implement
+        return _mapper.Map<ShowDto>(show);
     }    
 
     public ShowDto MovieToShowDto(Movie movie) {
-       // TODO: Implement
+        return _mapper.Map<ShowDto>(movie);
     }
 
     public ShowDto TvShowToShowDto(TvShow tvShow) {
-        // TODO: Implement
+        return _mapper.Map<ShowDto>(tvShow);
     }
-*/
 
     public int ShowExistsForLoggedInUser(int showApiId, string? userId) {
         int existingShowId = 0;
         if (null != userId) {
-            // TODO: Implement
+            
         }
 
         return existingShowId;
