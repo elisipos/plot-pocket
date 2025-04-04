@@ -14,4 +14,6 @@ export interface MediaItem {
   video: boolean;
   voteAverage: number;
   voteCount: number;
+
+  isBookmarked: boolean;
 }

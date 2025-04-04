@@ -41,18 +41,32 @@ public class TMDBService {
 
     return trendingRespResp ?? new TrendingResponse { Results = new List<Trending>() };
 	}
+
+	public async Task<TrendingResponse> GetTrendingMoviesAsync(string timeWindow = "day") {
+    var request = new RestRequest($"/trending/movie/{timeWindow}?api_key={_apiKey}")
+                  .AddHeader("accept", "application/json"); // This header says that we are expecting JSON as a response.
+
+    var response = await _restClient.GetAsync(request);
+    TrendingResponse? trendingRespResp = JsonSerializer.Deserialize<TrendingResponse>(response.Content);
+
+    return trendingRespResp ?? new TrendingResponse { Results = new List<Trending>() };
+	}
+
+	public async Task<TrendingResponse> GetTrendingTvShowsAsync(string timeWindow = "day") {
+    var request = new RestRequest($"/trending/tv/{timeWindow}?api_key={_apiKey}")
+                  .AddHeader("accept", "application/json"); // This header says that we are expecting JSON as a response.
+
+    var response = await _restClient.GetAsync(request);
+    TrendingResponse? trendingRespResp = JsonSerializer.Deserialize<TrendingResponse>(response.Content);
+
+    return trendingRespResp ?? new TrendingResponse { Results = new List<Trending>() };
+	}
 	
 	/**
 	 * TODO:
 	 * Implement methods to hit the following endpoints. Write any helper methods that you see fit
 	 * following good design practices.
-	 * 
-	 * Trending
-	 * ----------
-	 * - All Trending (DONE above)
-	 * - Trending Movies
-	 * - Trending TvShows
-	 * 
+	 *
 	 * Movies
 	 * ----------
 	 * - Now Playing Movies

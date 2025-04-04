@@ -25,4 +25,20 @@ export class TrendingService {
       })
     )
   }
+
+  public getTrendingMovies(): Observable<MediaItem[]> {
+    return this._http.get<MediaItem[]>(`/api/trending/movies`).pipe(
+      tap(mediaItems => {
+        this._trendingListSubject.next(mediaItems);
+      })
+    )
+  }
+
+  public getTrendingTvShows(): Observable<MediaItem[]> {
+    return this._http.get<MediaItem[]>(`/api/trending/tvshows`).pipe(
+      tap(mediaItems => {
+        this._trendingListSubject.next(mediaItems);
+      })
+    )
+  }
 }
