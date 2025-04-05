@@ -3,10 +3,8 @@
     <app-search-bar class="w-2/3"></app-search-bar>
   </div>
 
-  <div class="flex justify-center gap-5 my-6">
-    <app-radio-button [text]="'All Trending'"></app-radio-button>
-    <app-radio-button [text]="'All Movies'"></app-radio-button>
-    <app-radio-button [text]="'All Tv Shows'"></app-radio-button>
+  <div class="flex justify-center my-6">
+    <app-radio-button [text]="['All Trending', 'All Movies', 'All Tv Shows']"></app-radio-button>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
