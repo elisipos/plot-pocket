@@ -1,4 +1,5 @@
 using System.Configuration;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ public class ShowService {
      * 
      **/
      
-    public ShowDto MediaItemToShowDto(ApiMediaItem mediaItem, string? userId) {
+    public async Task<ShowDto> MediaItemToShowDto(ApiMediaItem mediaItem, string? userId) {
         string? dateToParse = mediaItem switch {
             Movie movie => movie.ReleaseDate,
             TvShow tvShow => tvShow.FirstAirDate,
@@ -42,7 +43,7 @@ public class ShowService {
 
         var date = DateTime.TryParse(dateToParse, out DateTime parsedDate) ? parsedDate : (DateTime?)null;
 
-        int existingShowId = null != userId ? this.ShowExistsForLoggedInUser(mediaItem.Id, userId) : 0;
+        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(mediaItem.Id, userId) : 0;
         
         string? title;
         if(mediaItem is Trending trendingMedia) {
@@ -54,6 +55,7 @@ public class ShowService {
 
         return new ShowDto {
             Id = mediaItem.Id,
+            ShowApiId = existingShowId,
             Type = mediaItem is Trending trendingItem ? trendingItem.MediaType : (mediaItem is Movie ? "Movie" : "TV Show"),
             Title = title,
             Date = date,
@@ -73,10 +75,15 @@ public class ShowService {
         return _mapper.Map<ShowDto>(tvShow);
     }
 
-    public int ShowExistsForLoggedInUser(int showApiId, string? userId) {
+    public async Task<int> ShowExistsForLoggedInUser(int showApiId, string? userId) {
         int existingShowId = 0;
         if (null != userId) {
-            
+            bool hasShow = await _context.ApplicationUsers
+                .Where(u => u.Id == userId)
+                .AnyAsync(u => u.Shows.Any(s => s.Id == showApiId));
+            if(hasShow) {
+                existingShowId = showApiId;
+            }
         }
 
         return existingShowId;

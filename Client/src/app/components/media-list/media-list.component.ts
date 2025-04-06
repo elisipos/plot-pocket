@@ -7,6 +7,8 @@ import { MediaFilterService } from '../../services/media-filter.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { RadioButtonComponent } from "../radio-button/radio-button.component";
+import { AuthService } from '../../auth/services/auth.service';
+import { User } from '../../auth/models/auth-user';
 
 @Component({
   selector: 'app-media-list',
@@ -18,10 +20,12 @@ export class MediaListComponent implements OnInit{
 
   private _trendingService = inject(TrendingService);
   private _mediaFilterService = inject(MediaFilterService);
+  private _authService = inject(AuthService);
 
   // TODO: Update this to set the mediaList to whichever page is open.
   public mediaList$: Observable<MediaItem[]> = this._trendingService.trendingList$;
-  // public show: any = null;
+  public user: User | null = null;
+  public show: any = null;
   // public selectedOption: string | null = null;
 
   public searchQuery$: Observable<string> = 
@@ -67,6 +71,10 @@ export class MediaListComponent implements OnInit{
 
   ngOnInit(): void {
     
+    this._authService.user$.subscribe(res => {
+      this.user = res;
+    })
+
     this.changeList('all');
 
   }

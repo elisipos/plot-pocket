@@ -31,7 +31,7 @@ namespace Server.Controllers
 
             ICollection<ShowDto> shows = new List<ShowDto>();
             foreach(Trending t in mediaItems.Results) {
-                ShowDto show = _ShowService.MediaItemToShowDto(t, null);
+                ShowDto show = await _ShowService.MediaItemToShowDto(t, null);
                 shows.Add(show);
             }
 
@@ -48,7 +48,7 @@ namespace Server.Controllers
 
             ICollection<ShowDto> shows = new List<ShowDto>();
             foreach(Trending t in mediaItems.Results) {
-                ShowDto show = _ShowService.MediaItemToShowDto(t, null);
+                ShowDto show = await _ShowService.MediaItemToShowDto(t, null);
                 shows.Add(show);
             }
 
@@ -65,7 +65,7 @@ namespace Server.Controllers
 
             ICollection<ShowDto> shows = new List<ShowDto>();
             foreach(Trending t in mediaItems.Results) {
-                ShowDto show = _ShowService.MediaItemToShowDto(t, null);
+                ShowDto show = await _ShowService.MediaItemToShowDto(t, null);
                 shows.Add(show);
             }
 
