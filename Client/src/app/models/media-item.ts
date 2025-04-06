@@ -7,10 +7,10 @@ export interface MediaItem {
   originalTitle: string;
   overview: string;
   posterPath: string;
-  mediaType: string;
+  type: string;
   genreIds: number[];
   popularity: number;
-  releaseDate: string;
+  date: string;
   video: boolean;
   voteAverage: number;
   voteCount: number;

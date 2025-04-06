@@ -48,18 +48,30 @@
           <div class="flex flex-col flex-grow p-4">
               <div class="mb-2 flex justify-between items-center">
                   <div class="flex-grow">
-                      <p class="text-white text-xl font-semibold truncate">{{show.title}}</p>
-                      <p class="text-white text-sm">{{show.releaseDate}}releaseDate</p>
+                      <p class="text-white text-xl font-semibold">{{show.title}}</p>
+                      <p class="text-white text-sm">{{show.date.substr(0, 10)}}</p>
                   </div>
               </div>
       
               <div class="flex items-center justify-between mt-auto">
-                  <div class="flex items-center">
-      
-                      <!-- Category icon SVG here -->
+                  <div *ngIf="show.type == 'movie'" class="flex items-center">
+                      <!-- movie -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white">
+                        <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
+                      </svg>
                       
-                      <p class="text-white text-sm ml-1">{{show.mediaType}}</p>
+                      <p class="text-white text-sm ml-1">{{show.type.toUpperCase()}}</p>
                   </div>
+
+                  <div *ngIf="show.type == 'tv'" class="flex items-center">
+                    <!-- movie -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 20 20" fill="white">
+                      <path d="M20 4.481H9.08l2.7-3.278L10.22 0 7 3.909 3.78.029 2.22 1.203l2.7 3.278H0V20h20V4.481Zm-8 13.58H2V6.42h10v11.64Zm5-3.88h-2v-1.94h2v1.94Zm0-3.88h-2V8.36h2v1.94Z"/>
+                    </svg>
+                    
+                    <p class="text-white text-sm ml-1">{{show.type.toUpperCase()}}</p>
+                </div>
+
               </div>
           </div>
         </div>

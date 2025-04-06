@@ -21,7 +21,7 @@ export class MediaListComponent implements OnInit{
 
   // TODO: Update this to set the mediaList to whichever page is open.
   public mediaList$: Observable<MediaItem[]> = this._trendingService.trendingList$;
-  public show: any = null;
+  // public show: any = null;
   // public selectedOption: string | null = null;
 
   public searchQuery$: Observable<string> = 
@@ -62,6 +62,7 @@ export class MediaListComponent implements OnInit{
 
       default: 'all'
     }
+    console.log(this.mediaList$);
   }
 
   ngOnInit(): void {
