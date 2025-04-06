@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 interface btnDetails {
   text: string;
@@ -17,25 +17,33 @@ export class RadioButtonComponent implements OnInit {
   
   
   public isPressed: boolean = false;
-  @Input() text: string[] = [];
   public buttons: btnDetails[] = [];
+  @Input() text: string[] = [];
+  @Input() default: number = 0;
+  @Output() radioBtnId = new EventEmitter<number>();
   
   ngOnInit(): void {
     
     let i = 0;
     this.text.forEach(item => {
-      this.buttons = [...this.buttons, {text: item, id: i, isPressed: false}]
+      this.buttons = [...this.buttons, {text: item, id: i, isPressed: i == this.default ? true : false}];
       i++;
     })
-    console.log(this.buttons)
   }
 
 
   public onClick(id: number): void {
+    // reset the buttons
+    this.buttons.forEach(btn => {
+      btn.isPressed = false;
+    })
+
+    // toggle the correct button
     let i = 0;
     this.buttons.forEach(btn => {
       if(btn.id! == id){
         this.buttons[i].isPressed = !this.buttons[i].isPressed;
+        this.radioBtnId.emit(btn.id);
       }
       i++;
     })

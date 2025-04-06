@@ -55,5 +55,22 @@ namespace Server.Controllers
             return Ok(shows);
         }
 
+        [HttpGet("tvshows")]
+        public async Task<ActionResult<ICollection<ShowDto>>> GetTrendingTvShows() {
+            TrendingResponse mediaItems = await _TMDBService.GetTrendingTvShowsAsync();
+
+            if(null == mediaItems) {
+                return BadRequest("Expected list of media items but got null instead.");
+            }
+
+            ICollection<ShowDto> shows = new List<ShowDto>();
+            foreach(Trending t in mediaItems.Results) {
+                ShowDto show = _ShowService.MediaItemToShowDto(t, null);
+                shows.Add(show);
+            }
+
+            return Ok(shows);
+        }
+
     }
 }

@@ -4,7 +4,7 @@
   </div>
 
   <div class="flex justify-center my-6">
-    <app-radio-button [text]="['All Trending', 'All Movies', 'All Tv Shows']"></app-radio-button>
+    <app-radio-button [text]="['All Trending', 'All Movies', 'All Tv Shows']" [default]="0" (radioBtnId)="handleData($event)"></app-radio-button>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
