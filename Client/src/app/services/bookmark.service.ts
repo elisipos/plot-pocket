@@ -18,20 +18,12 @@ export class BookmarkService {
 
   constructor() { }
 
-  public addBookmark(mediaItem: MediaItem): Observable<MediaItem> {
-    return this._http.post<MediaItem>(`/api/shows/add`, mediaItem).pipe(
-      tap(bookmark => {
-        this._bookmarkSubject.next(bookmark);
-      })
-    )
+  public addBookmark(mediaItem: MediaItem): any {
+    return this._http.post<MediaItem>(`/api/shows/add`, mediaItem).subscribe();
   }
 
-  public removeBookmark(): Observable<null> {
-    return this._http.delete<null>(`/api/shows/remove`).pipe(
-      tap(bookmark => {
-        this._bookmarkSubject.next(null);
-      })
-    )
+  public removeBookmark(showApiId: number): any {
+    return this._http.delete<null>(`/api/shows/remove/${showApiId}`).subscribe();
   }
 
 }

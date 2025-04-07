@@ -23,6 +23,7 @@ namespace MyApp.Namespace
 
         [HttpPost("add")]
         public async Task<ActionResult<ShowDto>> AddBookmark(Show show) {
+            Console.WriteLine("\n\n\nREACHED\n\n\n");
             if(null == show) {
                 return BadRequest();
             }
@@ -33,7 +34,16 @@ namespace MyApp.Namespace
                 return Unauthorized();
             }
 
-            if(_context.Shows.Any(s => s.ShowApiId == show.ShowApiId)) {
+            if(!_context.Shows.Any(s => s.ShowApiId == show.ShowApiId)) {
+                Show newShow = new Show{
+                    Id = show.Id,
+                    ShowApiId = show.ShowApiId,
+                    Type = show.Type,
+                    Title = show.Title,
+                    Date = show.Date,
+                    PosterPath = show.PosterPath,
+                    Users = // implement
+                }
                 await _context.Shows.AddAsync(show);
             }
 
@@ -59,10 +69,12 @@ namespace MyApp.Namespace
             }
 
             if(_context.Shows.Any(s => s.ShowApiId == id)) {
-                _context.Shows.Remove(id);
+                var show = _context.Shows.FirstOrDefault(s => s.ShowApiId == id);
+                _context.Shows.Remove(show);
             }
 
-            if(!user.Shows.Any(s => s.ShowApiId == show.ShowApiId)) {
+            if(!user.Shows.Any(s => s.ShowApiId == id)) {
+                var show = user.Shows.FirstOrDefault(s => s.ShowApiId == id);
                 user.Shows.Remove(show);
             }
 

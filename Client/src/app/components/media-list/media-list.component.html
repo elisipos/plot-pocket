@@ -26,17 +26,18 @@
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
+                  (click)="toggleBookmark(show)"
                 >
                   <!-- TODO: Make sure to have a "show" variable in our TypeScript -->
                   <path
-                    *ngIf="!show.isBookmarked"
+                    *ngIf="!show.showApiId"
                     d="M5 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v18l-7-3-7 3V3z"
                     stroke="#FFF"
                     stroke-width="2"
                   />
                   <!-- TODO: Make sure to have a "show" variable in our TypeScript -->
                   <path
-                    *ngIf="show.isBookmarked"
+                    *ngIf="show.showApiId"
                     d="M5 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v18l-7-3-7 3V3z"
                     fill="#FFF"
                   />

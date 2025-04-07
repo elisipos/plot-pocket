@@ -15,5 +15,5 @@ export interface MediaItem {
   voteAverage: number;
   voteCount: number;
 
-  isBookmarked: boolean;
+  showApiId: number;
 }

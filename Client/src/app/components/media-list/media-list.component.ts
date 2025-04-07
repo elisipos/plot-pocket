@@ -35,10 +35,10 @@ export class MediaListComponent implements OnInit{
     this._mediaFilterService.searchQuery$;
 
   toggleBookmark(mediaItem: MediaItem) {
-    if(!mediaItem.isBookmarked) {
-      console.log(this._bookmarkService.addBookmark(mediaItem));
-    }else if(mediaItem.isBookmarked) {
-      this._bookmarkService.removeBookmark();
+    if(!mediaItem.showApiId) {
+      this._bookmarkService.addBookmark(mediaItem);
+    }else if(mediaItem.showApiId) {
+      this._bookmarkService.removeBookmark(mediaItem.showApiId);
     }
 
   }
