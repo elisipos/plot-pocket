@@ -841,7 +841,6 @@ C:\Users\w3051260\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\
 C:\Users\w3051260\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\ref\Server.dll
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\appsettings.json
-C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\app.db
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\Server.staticwebassets.runtime.json
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\Server.staticwebassets.endpoints.json
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\Server.exe
@@ -1241,3 +1240,4 @@ C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\n
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\Server.pdb
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\Server.genruntimeconfig.cache
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\ref\Server.dll
+C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\app.db

@@ -9,10 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 import { RadioButtonComponent } from "../radio-button/radio-button.component";
 import { AuthService } from '../../auth/services/auth.service';
 import { User } from '../../auth/models/auth-user';
+import { NameSearchPipe } from '../../pipes/name-search.pipe';
 
 @Component({
   selector: 'app-media-list',
-  imports: [SearchBarComponent, SearchBarComponent, CommonModule, RadioButtonComponent],
+  imports: [SearchBarComponent, SearchBarComponent, CommonModule, RadioButtonComponent, NameSearchPipe],
   templateUrl: './media-list.component.html',
   styleUrl: './media-list.component.css'
 })

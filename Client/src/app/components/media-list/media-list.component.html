@@ -8,7 +8,7 @@
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-      <div *ngFor="let show of mediaList$ | async">
+      <div *ngFor="let show of mediaList$ | async | nameSearch : (searchQuery$ | async)">
         <div class="bg-slate-900 shadow-lg rounded-lg overflow-hidden">
           <!-- Image section -->
           <div class="relative w-full flex-shrink-0">
