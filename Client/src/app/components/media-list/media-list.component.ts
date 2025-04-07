@@ -10,6 +10,7 @@ import { RadioButtonComponent } from "../radio-button/radio-button.component";
 import { AuthService } from '../../auth/services/auth.service';
 import { User } from '../../auth/models/auth-user';
 import { NameSearchPipe } from '../../pipes/name-search.pipe';
+import { BookmarkService } from '../../services/bookmark.service';
 
 @Component({
   selector: 'app-media-list',
@@ -22,15 +23,25 @@ export class MediaListComponent implements OnInit{
   private _trendingService = inject(TrendingService);
   private _mediaFilterService = inject(MediaFilterService);
   private _authService = inject(AuthService);
+  private _bookmarkService = inject(BookmarkService);
 
   // TODO: Update this to set the mediaList to whichever page is open.
   public mediaList$: Observable<MediaItem[]> = this._trendingService.trendingList$;
   public user: User | null = null;
-  public show: any = null;
+  // public show: any = null;
   // public selectedOption: string | null = null;
 
   public searchQuery$: Observable<string> = 
     this._mediaFilterService.searchQuery$;
+
+  toggleBookmark(mediaItem: MediaItem) {
+    if(!mediaItem.isBookmarked) {
+      console.log(this._bookmarkService.addBookmark(mediaItem));
+    }else if(mediaItem.isBookmarked) {
+      this._bookmarkService.removeBookmark();
+    }
+
+  }
 
   handleData(data: number): void {
     switch (data) {
