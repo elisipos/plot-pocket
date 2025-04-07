@@ -14,12 +14,12 @@ namespace Server.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public AuthController(
-            SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager
         ){
             _signInManager = signInManager;
             _userManager = userManager;

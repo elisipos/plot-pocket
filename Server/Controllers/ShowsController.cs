@@ -41,9 +41,9 @@ namespace MyApp.Namespace
                     Type = show.Type,
                     Title = show.Title,
                     Date = show.Date,
-                    PosterPath = show.PosterPath,
-                    Users = // implement
-                }
+                    PosterPath = show.PosterPath
+                };
+                newShow.Users.Add(user);
                 await _context.Shows.AddAsync(show);
             }
 
