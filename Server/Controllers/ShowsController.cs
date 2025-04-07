@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using PlotPocket.Server.Models.Dtos;
 using PlotPocket.Server.Models.Entities;
 using Server.Data;
@@ -46,6 +44,31 @@ namespace MyApp.Namespace
             await _context.SaveChangesAsync();
 
             return Ok(show);
+        }
+
+        [HttpDelete("remove/{id}")]
+        public async Task<ActionResult> RemoveBookmark(int id) {
+            if(null == id) {
+                return BadRequest();
+            }
+
+            ApplicationUser? user = await _userManager.GetUserAsync(User);
+
+            if(null == user) {
+                return Unauthorized();
+            }
+
+            if(_context.Shows.Any(s => s.ShowApiId == id)) {
+                _context.Shows.Remove(id);
+            }
+
+            if(!user.Shows.Any(s => s.ShowApiId == show.ShowApiId)) {
+                user.Shows.Remove(show);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
     }
