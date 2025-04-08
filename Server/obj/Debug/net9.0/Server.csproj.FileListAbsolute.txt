@@ -11,7 +11,6 @@ C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\app
 C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\appsettings.json
 C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\Server.staticwebassets.runtime.json
 C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\Server.staticwebassets.endpoints.json
-C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\app.db
 C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\Server.exe
 C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\Server.deps.json
 C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\Server.runtimeconfig.json
@@ -1241,3 +1240,4 @@ C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\n
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\Server.genruntimeconfig.cache
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\ref\Server.dll
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\app.db
+C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\app.db

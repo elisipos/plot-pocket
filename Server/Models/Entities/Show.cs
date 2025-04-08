@@ -11,6 +11,6 @@ public class Show {
     public DateTime? Date { get; set; }
     public string PosterPath { get; set; }
 
-    public virtual ICollection<ApplicationUser> Users { get; set; }
+    public virtual ICollection<ApplicationUser>? Users { get; set; }
 
 }

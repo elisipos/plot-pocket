@@ -7,4 +7,5 @@ public class ShowDto {
   public string Title { get; set; }
   public DateTime? Date { get; set; }
   public string PosterPath { get; set; }
+  public bool Adult { get; set; }
 }

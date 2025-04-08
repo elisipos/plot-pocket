@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PlotPocket.Server.Models.Dtos;
 using PlotPocket.Server.Models.Entities;
 using Server.Data;
@@ -22,38 +23,35 @@ namespace MyApp.Namespace
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult<ShowDto>> AddBookmark(Show show) {
+        public async Task<ActionResult<ShowDto>> AddBookmark([FromBody] Show show) {
             Console.WriteLine("\n\n\nREACHED\n\n\n");
-            if(null == show) {
-                return BadRequest();
-            }
+            if(null == show) return BadRequest();
 
             ApplicationUser? user = await _userManager.GetUserAsync(User);
+            if(null == user) return Unauthorized();
 
-            if(null == user) {
-                return Unauthorized();
-            }
+            var existingShow = await _context.Shows.FirstOrDefaultAsync(s => s.Id == show.Id);
 
-            if(!_context.Shows.Any(s => s.ShowApiId == show.ShowApiId)) {
-                Show newShow = new Show{
+            if(existingShow == null) {
+                _context.Shows.Add( new Show{
                     Id = show.Id,
-                    ShowApiId = show.ShowApiId,
                     Type = show.Type,
                     Title = show.Title,
                     Date = show.Date,
-                    PosterPath = show.PosterPath
-                };
-                newShow.Users.Add(user);
-                await _context.Shows.AddAsync(show);
-            }
-
-            if(!user.Shows.Any(s => s.ShowApiId == show.ShowApiId)) {
-                user.Shows.Add(show);
+                    PosterPath = show.PosterPath,
+                    Users = new List<ApplicationUser> { user }
+                }
+                );
+            }else{
+                bool userHasShowBookmarked = user.Shows.Any(s => s.Id == show.Id);
+                if(!userHasShowBookmarked) {
+                    user.Shows.Add(existingShow);
+                    //exisingShow.Users.Add(user);
+                }
             }
 
             await _context.SaveChangesAsync();
-
-            return Ok(show);
+            return Ok(existingShow);
         }
 
         [HttpDelete("remove/{id}")]
@@ -68,18 +66,14 @@ namespace MyApp.Namespace
                 return Unauthorized();
             }
 
-            if(_context.Shows.Any(s => s.ShowApiId == id)) {
-                var show = _context.Shows.FirstOrDefault(s => s.ShowApiId == id);
+            
+            var show = _context.Shows.FirstOrDefault(s => s.Id == id);
+
+            if(show != null) {
                 _context.Shows.Remove(show);
             }
 
-            if(!user.Shows.Any(s => s.ShowApiId == id)) {
-                var show = user.Shows.FirstOrDefault(s => s.ShowApiId == id);
-                user.Shows.Remove(show);
-            }
-
             await _context.SaveChangesAsync();
-
             return Ok();
         }
 

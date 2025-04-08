@@ -36,6 +36,7 @@ export class MediaListComponent implements OnInit{
 
   toggleBookmark(mediaItem: MediaItem) {
     if(!mediaItem.showApiId) {
+      console.log(mediaItem)
       this._bookmarkService.addBookmark(mediaItem);
     }else if(mediaItem.showApiId) {
       this._bookmarkService.removeBookmark(mediaItem.showApiId);

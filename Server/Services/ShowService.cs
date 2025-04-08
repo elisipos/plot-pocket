@@ -81,9 +81,7 @@ public class ShowService {
             bool hasShow = await _context.ApplicationUsers
                 .Where(u => u.Id == userId)
                 .AnyAsync(u => u.Shows.Any(s => s.Id == showApiId));
-            if(hasShow) {
-                existingShowId = showApiId;
-            }
+            if(hasShow) existingShowId = showApiId;
         }
 
         return existingShowId;
