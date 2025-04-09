@@ -20,9 +20,13 @@ export class RadioButtonComponent implements OnInit {
   public buttons: btnDetails[] = [];
   @Input() text: string[] = [];
   @Input() default: number = 0;
+  @Input() generalType: string = '';
   @Output() radioBtnId = new EventEmitter<number>();
+  @Output() type = new EventEmitter<string>();
   
   ngOnInit(): void {
+
+    this.type.emit(this.generalType);
     
     let i = 0;
     this.text.forEach(item => {

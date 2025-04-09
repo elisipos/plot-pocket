@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using PlotPocket.Server.Models.Dtos;
 using PlotPocket.Server.Models.Entities;
+using PlotPocket.Server.Models.Responses;
+using PlotPocket.Server.Services;
 using Server.Data;
 
 namespace MyApp.Namespace
@@ -16,10 +19,12 @@ namespace MyApp.Namespace
 
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ShowService _ShowService;
 
-        public ShowsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) {
+        public ShowsController(ApplicationDbContext context, ShowService showService, UserManager<ApplicationUser> userManager) {
             _context = context;
             _userManager = userManager;
+            _ShowService = showService;
         }
 
         [HttpPost("add")]
@@ -75,6 +80,24 @@ namespace MyApp.Namespace
 
             await _context.SaveChangesAsync();
             return Ok();
+        }
+
+        [HttpGet("all")]
+        public async Task<ActionResult<ICollection<ShowDto>>> GetAllBookmarkedMedia() {
+            ApplicationUser? user = await _userManager.GetUserAsync(User);
+            if(null == user){
+                return Unauthorized();
+            }
+
+            ICollection<ShowDto> shows = new List<ShowDto>();
+            var bookmarkedShows = _context.Shows.Select(s => s);
+
+            foreach(Show s in bookmarkedShows){
+                ShowDto show = await _ShowService.ShowToShowDto(s, user?.Id);
+                shows.Add(show);
+            }
+
+            return Ok(shows);
         }
 
     }

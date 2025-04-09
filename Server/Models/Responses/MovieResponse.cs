@@ -14,7 +14,7 @@ public class MovieResponse {
     public int Page { get; set; }
 
     [JsonPropertyName("results")]
-    public List<Trending> Results { get; set; }
+    public List<Movie> Results { get; set; }
 
     [JsonPropertyName("total_pages")]
     public int TotalPages { get; set; }

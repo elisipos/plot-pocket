@@ -10,10 +10,10 @@ export class BookmarkService {
 
   private _http = inject(HttpClient);
 
-  private _bookmarkSubject: BehaviorSubject<MediaItem | null> = 
-    new BehaviorSubject<MediaItem | null>(null);
+  private _bookmarkSubject: BehaviorSubject<MediaItem[]> = 
+    new BehaviorSubject<MediaItem[]>([] as MediaItem[]);
 
-  public bookmark$: Observable<MediaItem | null> = 
+  public bookmark$: Observable<MediaItem[]> = 
     this._bookmarkSubject.asObservable();
 
   constructor() { }
@@ -24,6 +24,14 @@ export class BookmarkService {
 
   public removeBookmark(showApiId: number): any {
     return this._http.delete<null>(`/api/shows/remove/${showApiId}`).subscribe();
+  }
+
+  public getAllBookmarkedMedia(): Observable<MediaItem[]> {
+    return this._http.get<MediaItem[]>(`/api/shows/all`).pipe(
+      tap(mediaItems => {
+        this._bookmarkSubject.next(mediaItems);
+      })
+    )
   }
 
 }

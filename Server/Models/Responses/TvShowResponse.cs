@@ -14,7 +14,7 @@ public class TvShowResponse {
     public int Page { get; set; }
 
     [JsonPropertyName("results")]
-    public List<Trending> Results { get; set; }
+    public List<TvShow> Results { get; set; }
 
     [JsonPropertyName("total_pages")]
     public int TotalPages { get; set; }
@@ -32,6 +32,9 @@ public class TvShow : ApiMediaItem {
         above each of your C# properties to ensure that the JSON maps properly to your objects.
     */
 
+    [JsonPropertyName("adult")]
+    public bool Adult { get; set; }
+
     [JsonPropertyName("backdrop_path")]
     public string BackdropPath { get; set; }
 
@@ -42,7 +45,7 @@ public class TvShow : ApiMediaItem {
     public string Name { get; set; }
 
     [JsonPropertyName("origin_country")]
-    public string OriginCountry { get; set; }
+    public string[] OriginCountry { get; set; }
 
     [JsonPropertyName("original_name")]
     public string OriginalName { get; set; }

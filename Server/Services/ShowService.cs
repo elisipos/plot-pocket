@@ -63,16 +63,33 @@ public class ShowService {
         };
     }
 
-    public ShowDto ShowToShowDto(Show show){
-        return _mapper.Map<ShowDto>(show);
+    public async Task<ShowDto> ShowToShowDto(Show show, string? userId){
+        var showDto =_mapper.Map<ShowDto>(show);
+        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(show.Id, userId) : 0;
+        showDto.ShowApiId = existingShowId;
+        return showDto;
     }    
 
-    public ShowDto MovieToShowDto(Movie movie) {
-        return _mapper.Map<ShowDto>(movie);
+    public async Task<ShowDto> MovieToShowDto(Movie movie, string? userId) {
+        var showDto = _mapper.Map<ShowDto>(movie);
+        showDto.PosterPath = _SecureImgUrl + _SmallImgSize + showDto.PosterPath;
+        showDto.Type = "movie";
+
+        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(movie.Id, userId) : 0;
+        showDto.ShowApiId = existingShowId;
+
+        return showDto;
     }
 
-    public ShowDto TvShowToShowDto(TvShow tvShow) {
-        return _mapper.Map<ShowDto>(tvShow);
+    public async Task<ShowDto> TvShowToShowDto(TvShow tvShow, string? userId) {
+        var showDto = _mapper.Map<ShowDto>(tvShow);
+        showDto.PosterPath = _SecureImgUrl + _SmallImgSize + showDto.PosterPath;
+        showDto.Type = "tv";
+
+        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(tvShow.Id, userId) : 0;
+        showDto.ShowApiId = existingShowId;
+
+        return showDto;
     }
 
     public async Task<int> ShowExistsForLoggedInUser(int showApiId, string? userId) {

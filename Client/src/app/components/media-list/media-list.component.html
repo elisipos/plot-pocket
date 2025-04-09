@@ -4,7 +4,9 @@
   </div>
 
   <div class="flex justify-center my-6">
-    <app-radio-button [text]="['All Trending', 'Trending Movies', 'Trending Tv Shows']" [default]="0" (radioBtnId)="handleData($event)"></app-radio-button>
+    <app-radio-button *ngIf="this.currentRoute == 'trending'" [text]="['All Trending', 'Trending Movies', 'Trending Tv Shows']" [default]="0" [generalType]="this.currentRoute" (radioBtnId)="handleBtnData($event, this.currentRoute)"></app-radio-button>
+    <app-radio-button *ngIf="this.currentRoute == 'movies'" [text]="['Now Playing', 'Top Rated', 'Popular']" [default]="0" [generalType]="this.currentRoute" (radioBtnId)="handleBtnData($event, this.currentRoute)"></app-radio-button>
+    <app-radio-button *ngIf="this.currentRoute == 'tv-shows'" [text]="['Airing Today', 'Top Rated', 'Popular']" [default]="0" [generalType]="this.currentRoute" (radioBtnId)="handleBtnData($event, this.currentRoute)"></app-radio-button>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
