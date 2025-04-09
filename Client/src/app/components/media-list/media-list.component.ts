@@ -28,6 +28,7 @@ export class MediaListComponent implements OnInit{
   // TODO: Update this to set the mediaList to whichever page is open.
   public mediaList$: Observable<MediaItem[]> = this._trendingService.trendingList$;
   public user: User | null = null;
+  public selectedOption: string = 'all';
   // public show: any = null;
   // public selectedOption: string | null = null;
 
@@ -36,31 +37,31 @@ export class MediaListComponent implements OnInit{
 
   toggleBookmark(mediaItem: MediaItem) {
     if(!mediaItem.showApiId) {
-      console.log(mediaItem)
       this._bookmarkService.addBookmark(mediaItem);
     }else if(mediaItem.showApiId) {
       this._bookmarkService.removeBookmark(mediaItem.showApiId);
     }
-
+    this.changeList(this.selectedOption);
   }
 
   handleData(data: number): void {
     switch (data) {
       case 0:
-        this.changeList("all");
+        this.selectedOption = 'all';
+        break;
+        
+      case 1:
+        this.selectedOption = 'movies';
         break;
       
-      case 1:
-        this.changeList('movies');
-        break;
-
       case 2:
-        this.changeList('tvshows');
+        this.selectedOption = 'tvshows';
         break;
-
+            
       default: 0;
         break;
     }
+    this.changeList(this.selectedOption);
   }
 
   changeList(list: string): void {
@@ -78,6 +79,7 @@ export class MediaListComponent implements OnInit{
         break;
 
       default: 'all'
+        break;
     }
     console.log(this.mediaList$);
   }
