@@ -50,6 +50,7 @@ export class MediaListComponent implements OnInit{
     }else if(mediaItem.showApiId) {
       this._bookmarkService.removeBookmark(mediaItem.showApiId);
     }
+    console.log('resetting list');
     this.changeList(this.selectedOption, this.selectedType);
   }
 
@@ -132,7 +133,7 @@ export class MediaListComponent implements OnInit{
 
         switch (list){
           case 'all':
-            this._trendingService.getTrendingAll().subscribe();
+            this._trendingService.getTrendingAll().subscribe(res => console.log("Results, ", res));
             break;
     
           case 'movies':
@@ -197,7 +198,7 @@ export class MediaListComponent implements OnInit{
       case 'bookmarks':
         this.mediaList$ = this._bookmarkService.bookmark$;
 
-        this._bookmarkService.getAllBookmarkedMedia().subscribe();
+        this._bookmarkService.getAllBookmarkedMedia().subscribe(res => console.log("Results, ", res));
         break;
 
       default: 'trending'
@@ -211,7 +212,6 @@ export class MediaListComponent implements OnInit{
       this.user = res;
     })
     
-    // I hate this but I backed myself into a corner with the way Im handling the radio buttons and refreshes.
     if(this.currentRoute == 'bookmarks'){
       this.selectedType = 'bookmarks'
       this.selectedOption = 'bookmarks'

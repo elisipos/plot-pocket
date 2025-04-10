@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\git repos\\asp.net\\plot-pocket\\Server\\Server.csproj": {}
+    "C:\\Users\\w3051260\\Desktop\\git repos\\ASP.NET\\plot-pocket\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\git repos\\asp.net\\plot-pocket\\Server\\Server.csproj": {
+    "C:\\Users\\w3051260\\Desktop\\git repos\\ASP.NET\\plot-pocket\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\git repos\\asp.net\\plot-pocket\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\w3051260\\Desktop\\git repos\\ASP.NET\\plot-pocket\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\admin\\Desktop\\git repos\\asp.net\\plot-pocket\\Server\\Server.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\git repos\\asp.net\\plot-pocket\\Server\\obj\\",
+        "projectPath": "C:\\Users\\w3051260\\Desktop\\git repos\\ASP.NET\\plot-pocket\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\w3051260\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\w3051260\\Desktop\\git repos\\ASP.NET\\plot-pocket\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\w3051260\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
