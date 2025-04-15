@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { SearchBarComponent } from "../search-bar/search-bar.component";
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { MediaItem } from '../../models/media-item';
 import { TrendingService } from '../../services/trending.service';
 import { MediaFilterService } from '../../services/media-filter.service';
@@ -46,11 +46,18 @@ export class MediaListComponent implements OnInit{
 
   toggleBookmark(mediaItem: MediaItem) {
     if(!mediaItem.showApiId) {
-      this._bookmarkService.addBookmark(mediaItem);
+      this._bookmarkService.addBookmark(mediaItem).pipe(
+        tap(() => {
+          this._bookmarkService.getAllBookmarkedMedia().subscribe()
+        })
+      ).subscribe();
     }else if(mediaItem.showApiId) {
-      this._bookmarkService.removeBookmark(mediaItem.showApiId);
+      this._bookmarkService.removeBookmark(mediaItem.showApiId).pipe(
+        tap(() => {
+          this._bookmarkService.getAllBookmarkedMedia().subscribe()
+        })
+      ).subscribe();
     }
-    console.log('resetting list');
     this.changeList(this.selectedOption, this.selectedType);
   }
 
@@ -133,7 +140,7 @@ export class MediaListComponent implements OnInit{
 
         switch (list){
           case 'all':
-            this._trendingService.getTrendingAll().subscribe(res => console.log("Results, ", res));
+            this._trendingService.getTrendingAll().subscribe();
             break;
     
           case 'movies':
@@ -197,8 +204,7 @@ export class MediaListComponent implements OnInit{
       
       case 'bookmarks':
         this.mediaList$ = this._bookmarkService.bookmark$;
-
-        this._bookmarkService.getAllBookmarkedMedia().subscribe(res => console.log("Results, ", res));
+        this._bookmarkService.getAllBookmarkedMedia();
         break;
 
       default: 'trending'
