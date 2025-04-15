@@ -90,14 +90,20 @@ namespace MyApp.Namespace
             }
 
             ICollection<ShowDto> shows = new List<ShowDto>();
-            var bookmarkedShows = _context.Shows.Select(s => s);
+            var bookmarkedShows = await _context.Shows
+                .Where(s => s.Users.Any(u => u.Id == user.Id))
+                .ToListAsync();
 
-            foreach(Show s in bookmarkedShows){
-                ShowDto show = await _ShowService.ShowToShowDto(s, user?.Id);
-                shows.Add(show);
-            }
+            var bookmarkedDtos = await Task.WhenAll(
+                bookmarkedShows.Select(s => _ShowService.ShowToShowDto(s, user.Id))
+            );
 
-            return Ok(shows);
+            // foreach(ShowDto s in bookmarkedShows){
+            //     ShowDto show = await _ShowService.ShowToShowDto(s, user?.Id);
+            //     shows.Add(show);
+            // }
+
+            return Ok(bookmarkedDtos);
         }
 
     }

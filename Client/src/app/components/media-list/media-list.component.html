@@ -9,6 +9,10 @@
     <app-radio-button *ngIf="this.currentRoute == 'tv-shows'" [text]="['Airing Today', 'Top Rated', 'Popular']" [default]="0" [generalType]="this.currentRoute" (radioBtnId)="handleBtnData($event, this.currentRoute)"></app-radio-button>
   </div>
 
+  <div *ngIf="mediaList$ | async as mediaList" class="flex justify-center">
+    <p *ngIf="mediaList.length == 0" class="text-gray-400 w-2/3 text-center">No media to show! For bookmarks, click the bookmark icon to save a show and have it appear here.</p>
+  </div>
+
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
       <div *ngFor="let show of mediaList$ | async | nameSearch : (searchQuery$ | async)">
         <div class="bg-slate-900 shadow-lg rounded-lg overflow-hidden">
