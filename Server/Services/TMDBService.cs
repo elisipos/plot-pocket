@@ -27,6 +27,21 @@ public class TMDBService {
 		*/
 		_restClient = new RestClient(_baseUrl);
 	}
+
+
+	/* =============== */
+	/* GET MOVIE BY ID */
+	/* =============== */
+
+	public async Task<Movie> GetMovieByIdAsync(int id) {
+		var request = new RestRequest($"/movie/{id}?api_key={_apiKey}")
+									.AddHeader("accept", "application/json");
+
+		var response = await _restClient.GetAsync(request);
+		Movie? movieResp = JsonSerializer.Deserialize<Movie>(response.Content);
+
+		return movieResp;
+	}
 	
 	/* ============== */
 	/* BEGIN TRENDING */

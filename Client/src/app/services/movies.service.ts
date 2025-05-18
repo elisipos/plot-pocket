@@ -16,7 +16,23 @@ export class MoviesService {
   public movieList$: Observable<MediaItem[]> =
     this._moviesListSubject.asObservable();
 
+
+  private _movieSubject: BehaviorSubject<MediaItem | null> =
+    new BehaviorSubject<MediaItem | null>(null);
+
+  public movie$: Observable<MediaItem | null> =
+    this._movieSubject.asObservable();
+
   constructor() { }
+
+  public getMovieById(id: string): Observable<MediaItem> {
+    return this._http.get<MediaItem>(`/api/movies/${id}`).pipe(
+      tap(mediaItem => {
+        this._movieSubject.next(mediaItem);
+        console.log(this._movieSubject.value)
+      })
+    )
+  }
 
   public getMoviesNowPlaying(): Observable<MediaItem[]> {
     return this._http.get<MediaItem[]>(`/api/movies/now-playing`).pipe(

@@ -25,6 +25,20 @@ namespace Server.Controllers
         }
 
 
+        [HttpGet("{showId}")]
+        public async Task<ActionResult<ShowDto>> GetMovieById(int showId) {
+            ApplicationUser? user = await _userManager.GetUserAsync(User);
+            Movie movie = await _TMDBService.GetMovieByIdAsync(showId);
+
+            if(null == movie) {
+                return BadRequest("Expected show details but got null instead.");
+            }
+
+            ShowDto movieDto = await _ShowService.MovieToShowDto(movie, user?.Id);
+
+            return movieDto;
+        }
+
         [HttpGet("now-playing")]
         public async Task<ActionResult<ICollection<ShowDto>>> GetNowPlaying() {
             ApplicationUser? user = await _userManager.GetUserAsync(User);

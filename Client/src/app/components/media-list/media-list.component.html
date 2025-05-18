@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4">
   <div class="flex flex-col items-center gap-4 my-6">
-    <app-search-bar class="w-2/3"></app-search-bar>
+    <app-search-bar class="w-1/2"></app-search-bar>
   </div>
 
   <div class="flex justify-center my-6">
@@ -9,76 +9,13 @@
     <app-radio-button *ngIf="this.currentRoute == 'tv-shows'" [text]="['Airing Today', 'Top Rated', 'Popular']" [default]="0" [generalType]="this.currentRoute" (radioBtnId)="handleBtnData($event, this.currentRoute)"></app-radio-button>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+  <div *ngIf="mediaList$ | async as mediaList" class="flex justify-center">
+    <p *ngIf="mediaList.length == 0" class="text-gray-400 w-2/3 text-center">No media to show! For bookmarks, click the bookmark icon to save a show and have it appear here.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-2/3 mx-auto">
       <div *ngFor="let show of mediaList$ | async | nameSearch : (searchQuery$ | async)">
-        <div class="bg-slate-900 shadow-lg rounded-lg overflow-hidden">
-          <!-- Image section -->
-          <div class="relative w-full flex-shrink-0">
-              <img class="w-full" src="{{show.posterPath || show.backdropPath}}" alt="Show poster">
-              
-              <!-- Position the bookmark icon absolutely within the image container -->
-              <div
-              class="absolute top-2 right-2 w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center cursor-pointer"
-              *ngIf="user"
-              (click)="toggleBookmark(show)"
-              >
-                <!-- Bookmark SVG -->
-                <svg
-                  width="22"
-                  height="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <!-- TODO: Make sure to have a "show" variable in our TypeScript -->
-                  <path
-                    *ngIf="!show.showApiId"
-                    d="M5 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v18l-7-3-7 3V3z"
-                    stroke="#FFF"
-                    stroke-width="2"
-                  />
-                  <!-- TODO: Make sure to have a "show" variable in our TypeScript -->
-                  <path
-                    *ngIf="show.showApiId"
-                    d="M5 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v18l-7-3-7 3V3z"
-                    fill="#FFF"
-                  />
-                </svg>
-              </div>
-              
-          </div>
-      
-          <!-- Content section -->
-          <div class="flex flex-col flex-grow p-4">
-              <div class="mb-2 flex justify-between items-center">
-                  <div class="flex-grow">
-                      <p class="text-white text-xl font-semibold">{{show.title}}</p>
-                      <p class="text-white text-sm">{{show.date.substr(0, 10)}}</p>
-                  </div>
-              </div>
-      
-              <div class="flex items-center justify-between mt-auto">
-                  <div *ngIf="show.type == 'movie'" class="flex items-center">
-                      <!-- movie -->
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white">
-                        <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
-                      </svg>
-                      
-                      <p class="text-white text-sm ml-1">{{show.type.toUpperCase()}}</p>
-                  </div>
-
-                  <div *ngIf="show.type == 'tv'" class="flex items-center">
-                    <!-- movie -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 20 20" fill="white">
-                      <path d="M20 4.481H9.08l2.7-3.278L10.22 0 7 3.909 3.78.029 2.22 1.203l2.7 3.278H0V20h20V4.481Zm-8 13.58H2V6.42h10v11.64Zm5-3.88h-2v-1.94h2v1.94Zm0-3.88h-2V8.36h2v1.94Z"/>
-                    </svg>
-                    
-                    <p class="text-white text-sm ml-1">{{show.type.toUpperCase()}}</p>
-                </div>
-
-              </div>
-          </div>
-        </div>
+        <app-show-card [user]="user" [show]="show" (showToBookmark)="handleToggleData($event)"></app-show-card>
     </div>
   </div>
 </div>

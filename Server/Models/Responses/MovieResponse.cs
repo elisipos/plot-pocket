@@ -65,4 +65,20 @@ public class Movie : ApiMediaItem {
 
     [JsonPropertyName("video")]
     public bool Video { get; set; }
+
+
+    [JsonPropertyName("budget")]
+    public int Budget { get; set; }
+
+    [JsonPropertyName("homepage")]
+    public string Homepage { get; set; }
+
+    [JsonPropertyName("runtime")]
+    public int Runtime { get; set; }
+
+    [JsonPropertyName("status")]
+    public string Status { get; set; }
+
+    [JsonPropertyName("tagline")]
+    public string Tagline { get; set; }
 }
