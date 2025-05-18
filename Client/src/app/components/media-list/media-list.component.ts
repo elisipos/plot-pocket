@@ -13,10 +13,11 @@ import { NameSearchPipe } from '../../pipes/name-search.pipe';
 import { BookmarkService } from '../../services/bookmark.service';
 import { MoviesService } from '../../services/movies.service';
 import { TvShowService } from '../../services/tv-show.service';
+import { ShowCardComponent } from "../show-card/show-card.component";
 
 @Component({
   selector: 'app-media-list',
-  imports: [SearchBarComponent, SearchBarComponent, CommonModule, RadioButtonComponent, NameSearchPipe],
+  imports: [SearchBarComponent, SearchBarComponent, CommonModule, RadioButtonComponent, NameSearchPipe, ShowCardComponent],
   templateUrl: './media-list.component.html',
   styleUrl: './media-list.component.css'
 })
@@ -59,6 +60,14 @@ export class MediaListComponent implements OnInit{
       ).subscribe();
     }
     this.changeList(this.selectedOption, this.selectedType);
+  }
+
+  handleToggleData($event: MediaItem | null) {
+    if($event == null){
+      console.log("handleToggleData returned null");
+      return;
+    }
+    this.toggleBookmark($event);
   }
 
   handleBtnData(data: number, type: string): void {
