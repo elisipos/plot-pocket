@@ -1,3 +1,5 @@
+import { Genre } from "./genre";
+
 export interface MediaItem {
   adult: boolean;
   backdropPath: string;
@@ -8,12 +10,16 @@ export interface MediaItem {
   overview: string;
   posterPath: string;
   type: string;
-  genreIds: number[];
+  genres: Genre[];
   popularity: number;
   date: string;
   video: boolean;
   voteAverage: number;
   voteCount: number;
+  tagline: string;
+  budget: number;
+  homepage: string;
+  runtime: number;
 
   showApiId: number;
 }

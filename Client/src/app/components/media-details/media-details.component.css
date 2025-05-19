@@ -1,0 +1,33 @@
+.fake-bullet-right {
+  position: relative;
+}
+
+.fake-bullet-right::after {
+  content: '';
+  position: absolute;
+  background: lightgray;
+  width: 5px;
+  height: 5px;
+  right: -13px;
+  top: 50%;
+  transform-origin: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
+.fake-bullet-left {
+  position: relative;
+}
+
+.fake-bullet-left::after {
+  content: '';
+  position: absolute;
+  background: lightgray;
+  width: 5px;
+  height: 5px;
+  left: -13px;
+  top: 50%;
+  transform-origin: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
