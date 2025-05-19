@@ -1,4 +1,4 @@
-<div class="bg-slate-900 shadow-lg rounded-lg overflow-hidden">
+<div class="bg-slate-900 shadow-lg rounded-lg overflow-hidden" [routerLink]="[`/media/${show!.type}/${show!.id}`]">
   <!-- Image section -->
   <div class="relative w-full flex-shrink-0">
       <img class="w-full" src="{{show!.posterPath || show!.backdropPath}}" alt="Show poster">
