@@ -32,7 +32,7 @@
           <div>{{this.show.overview}}</div>
         </div>
 
-        <div class="my-3">
+        <div class="my-3" *ngIf="this.show.budget">
           <div class="text-xl font-semibold">Budget</div>
           <div>{{this.formatUSD(this.show.budget)}}</div>
         </div>
