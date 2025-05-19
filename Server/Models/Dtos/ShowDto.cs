@@ -20,6 +20,7 @@ public class ShowDto {
   public string? Status { get; set; }
   public string? Tagline { get; set; }
   public string? OriginalTitle { get; set; }
+  public string? Overview { get; set; }
 
   // Extra TvShow Item Properties
   public string[]? OriginCountry { get; set; }

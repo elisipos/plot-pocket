@@ -83,6 +83,9 @@ public class Movie : ApiMediaItem {
     [JsonPropertyName("tagline")]
     public string Tagline { get; set; }
 
+    [JsonPropertyName("overview")]
+    public string Overview { get; set; }
+
     [JsonPropertyName("origin_country")]
     public string[]? OriginCountry { get; set; }
 }
