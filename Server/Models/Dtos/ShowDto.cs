@@ -1,3 +1,5 @@
+using PlotPocket.Server.Models.Responses;
+
 namespace PlotPocket.Server.Models.Dtos;
 
 public class ShowDto {
@@ -21,6 +23,7 @@ public class ShowDto {
   public string? Tagline { get; set; }
   public string? OriginalTitle { get; set; }
   public string? Overview { get; set; }
+  public Genre[]? Genres { get; set; }
 
   // Extra TvShow Item Properties
   public string[]? OriginCountry { get; set; }

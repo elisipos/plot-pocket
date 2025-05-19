@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace PlotPocket.Server.Models.Responses;
 
@@ -39,6 +40,15 @@ public class Date {
     [JsonPropertyName("minimum")]
     public string Minimum { get; set; }
 
+}
+
+    // For Movie DETAILS only, will not work with general movie response.
+public class Genre {
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
 }
 
 public class Movie : ApiMediaItem {
@@ -88,4 +98,7 @@ public class Movie : ApiMediaItem {
 
     [JsonPropertyName("origin_country")]
     public string[]? OriginCountry { get; set; }
+
+    [JsonPropertyName("genres")]
+    public Genre[] Genres { get; set; }
 }

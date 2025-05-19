@@ -1,11 +1,14 @@
 <div class="container mx-auto w-2/3">
   <div class="flex flex-row grid-cols-2 items-center">
-    <div class="">Poster</div>
+    <img class="w-1/3" src="{{this.show.posterPath || this.show.backdropPath}}" alt="Show poster">
     <div class="">
-      <div>Title</div>
-      <div>Genre</div>
+      <div>{{this.show.type}}</div>
+      <div>{{this.show.title}}</div>
+      <div>{{this.show.genreIds}}</div>
       <div>Tagline</div>
-      <div></div>
+      <div>Overview</div>
+      <div>Budget</div>
+      <div>Homepage</div>
     </div>
   </div>
 </div>
