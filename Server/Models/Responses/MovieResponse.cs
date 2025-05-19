@@ -66,6 +66,7 @@ public class Movie : ApiMediaItem {
     [JsonPropertyName("video")]
     public bool Video { get; set; }
 
+    // Specific Movie Details
 
     [JsonPropertyName("budget")]
     public int Budget { get; set; }
@@ -81,4 +82,7 @@ public class Movie : ApiMediaItem {
 
     [JsonPropertyName("tagline")]
     public string Tagline { get; set; }
+
+    [JsonPropertyName("origin_country")]
+    public string[]? OriginCountry { get; set; }
 }
