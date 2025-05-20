@@ -16,7 +16,23 @@ export class TvShowService {
   public tvShowsList$: Observable<MediaItem[]> =
     this._tvShowsListSubject.asObservable();
 
+
+  private _tvShowSubject: BehaviorSubject<MediaItem | null> =
+    new BehaviorSubject<MediaItem | null>(null);
+
+  public tvShow$: Observable<MediaItem | null> =
+    this._tvShowSubject.asObservable();
+
   constructor() { }
+
+  public getTvShowById(id: string): Observable<MediaItem> {
+    return this._http.get<MediaItem>(`/api/tvshows/${id}`).pipe(
+      tap(mediaItem => {
+        this._tvShowSubject.next(mediaItem);
+        console.log(this.tvShow$);
+      })
+    )
+  }
 
   public getTvShowsAiringToday(): Observable<MediaItem[]> {
     return this._http.get<MediaItem[]>(`/api/tvshows/airing-today`).pipe(

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 import { MediaItem } from '../../models/media-item';
 import { CommonModule } from '@angular/common';
+import { TvShowService } from '../../services/tv-show.service';
 
 @Component({
   selector: 'app-media-details',
@@ -13,8 +14,10 @@ import { CommonModule } from '@angular/common';
 export class MediaDetailsComponent implements OnInit{
 
   private _moviesService = inject(MoviesService);
+  private _tvShowService = inject(TvShowService);
 
   public showId!: string;
+  public showType!: string;
   public show!: MediaItem;
 
   constructor(private route: ActivatedRoute) {}
@@ -35,10 +38,17 @@ export class MediaDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.showId = params.get('showId')!;
+      this.showType = params.get('type')!;
       
-      this._moviesService.getMovieById(this.showId).subscribe(res => {
-        this.show = res;
-      });
+      if(this.showType === "movie"){
+        this._moviesService.getMovieById(this.showId).subscribe(res => {
+          this.show = res;
+        });
+      }else{
+        this._tvShowService.getTvShowById(this.showId).subscribe(res => {
+          this.show = res;
+        });
+      }
     })
   }
 

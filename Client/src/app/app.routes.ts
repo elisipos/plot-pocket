@@ -13,7 +13,6 @@ export const routes: Routes = [
   {path: 'media/movies', component: MediaListComponent},
   {path: 'media/tv-shows', component: MediaListComponent},
   {path: 'media/bookmarks', component: MediaListComponent},
-  {path: 'media/movie/:showId', component: MediaDetailsComponent},
-  {path: 'media/tv/:showId', component: MediaDetailsComponent},
+  {path: 'media/:type/:showId', component: MediaDetailsComponent},
   {path: '**', redirectTo: ''}
 ];

@@ -24,6 +24,20 @@ namespace Server.Controllers
             _ShowService = showService;
         }
 
+        [HttpGet("{showId}")]
+        public async Task<ActionResult<ShowDto>> GetTvShowById(int showId) {
+            ApplicationUser? user = await _userManager.GetUserAsync(User);
+            TvShow tvShow = await _TMDBService.GetTvShowByIdAsync(showId);
+
+            if(null == tvShow) {
+                return BadRequest("Expected show details but got null instead.");
+            }
+
+            ShowDto tvShowDto = await _ShowService.TvShowToShowDto(tvShow, user?.Id);
+
+            return tvShowDto;
+        }
+
 
         [HttpGet("airing-today")]
         public async Task<ActionResult<ICollection<ShowDto>>> GetAiringToday() {

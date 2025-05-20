@@ -42,6 +42,20 @@ public class TMDBService {
 
 		return movieResp;
 	}
+
+	/* ================ */
+	/* GET TVSHOW BY ID */
+	/* ================ */
+
+	public async Task<TvShow> GetTvShowByIdAsync(int id) {
+		var request = new RestRequest($"/tv/{id}?api_key={_apiKey}")
+									.AddHeader("accept", "application/json");
+
+		var response = await _restClient.GetAsync(request);
+		TvShow? tvShowResp = JsonSerializer.Deserialize<TvShow>(response.Content);
+
+		return tvShowResp;
+	}
 	
 	/* ============== */
 	/* BEGIN TRENDING */

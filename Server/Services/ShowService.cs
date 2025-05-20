@@ -81,6 +81,7 @@ public class ShowService {
 
     public async Task<ShowDto> TvShowToShowDto(TvShow tvShow, string? userId) {
         var showDto = _mapper.Map<ShowDto>(tvShow);
+        showDto.HighResPosterPath = _SecureImgUrl + _OriginalImgSize + showDto.PosterPath;
         showDto.PosterPath = _SecureImgUrl + _SmallImgSize + showDto.PosterPath;
         showDto.Type = "tv";
 
