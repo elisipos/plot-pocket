@@ -38,7 +38,7 @@ export class MediaDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.showId = params.get('showId')!;
-      this.showType = params.get('type')!;
+      this.showType = params.get('type')!; 
       
       if(this.showType === "movie"){
         this._moviesService.getMovieById(this.showId).subscribe(res => {

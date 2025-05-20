@@ -1,4 +1,7 @@
 import { Genre } from "./genre";
+import { Episode } from "./tvshow/episode";
+import { Person } from "./tvshow/person";
+import { Season } from "./tvshow/season";
 
 export interface MediaItem {
   adult: boolean;
@@ -18,10 +21,27 @@ export interface MediaItem {
   video: boolean;
   voteAverage: number;
   voteCount: number;
+  homepage: string;
+
+  // Movie Specific
   tagline: string;
   budget: number;
-  homepage: string;
   runtime: number;
+
+  // TvShow Specific
+  createdBy: Person[];
+  firstAirDate: string;
+  inProduction: boolean;
+  languages: string[];
+  lastAirDate: string;
+  lastEpisodeToAir: Episode;
+  name: string;
+  nextEpisodeToAir: Episode;
+  numberOfEpisodes: number;
+  numberOfSeasons: number;
+  originCountry: string[];
+  originalName: string;
+  seasons: Season[];
 
   showApiId: number;
 }

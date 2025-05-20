@@ -29,4 +29,13 @@ public class ShowDto {
   // Extra TvShow Item Properties
   public string[]? OriginCountry { get; set; }
   public string? OriginalName { get; set; }
+  public Person[] CreatedBy { get; set; }
+  public bool InProduction { get; set; }
+  public string[]? Languages { get; set; }
+  public string? LastAirDate { get; set; }
+  public Episode LastEpisodeToAir { get; set; }
+  public Episode NextEpisodeToAir { get; set; }
+  public int? NumberOfEpisodes { get; set; }
+  public int? NumberOfSeasons { get; set; }
+  public Season[] Seasons { get; set; }
 }
