@@ -3,12 +3,14 @@ import { Genre } from "./genre";
 export interface MediaItem {
   adult: boolean;
   backdropPath: string;
+  highResBackdropPath: string;
   id: number;
   title: string;
   originalLanguage: string;
   originalTitle: string;
   overview: string;
   posterPath: string;
+  highResPosterPath: string;
   type: string;
   genres: Genre[];
   popularity: number;

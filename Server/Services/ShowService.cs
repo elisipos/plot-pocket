@@ -20,6 +20,7 @@ public class ShowService {
     public ShowService(IConfiguration configuration, IMapper mapper, ApplicationDbContext context) {
         _SecureImgUrl = configuration["TMDB:Images:SecureBaseUrl"];
         _SmallImgSize = configuration["TMDB:Images:BackdropSizes:Small"];
+        _OriginalImgSize = configuration["TMDB:Images:BackdropSizes:Original"];
         _mapper = mapper;
         _context = context;
     }
@@ -27,10 +28,6 @@ public class ShowService {
     /**
      * Below can be used for converting return objects from the Trending endpoints 
      * to ShowDtos. 
-     * 
-     * TODO: Make sure to fill in the ShowDto properties on the return of this method.
-     *          You should **NOT** need to modify anything else.
-     * 
      **/
      
     public async Task<ShowDto> MediaItemToShowDto(ApiMediaItem mediaItem, string? userId) {
@@ -72,6 +69,7 @@ public class ShowService {
 
     public async Task<ShowDto> MovieToShowDto(Movie movie, string? userId) {
         var showDto = _mapper.Map<ShowDto>(movie);
+        showDto.HighResPosterPath = _SecureImgUrl + _OriginalImgSize + showDto.PosterPath;
         showDto.PosterPath = _SecureImgUrl + _SmallImgSize + showDto.PosterPath;
         showDto.Type = "movie";
 

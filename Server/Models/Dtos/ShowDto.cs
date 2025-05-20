@@ -24,6 +24,7 @@ public class ShowDto {
   public string? OriginalTitle { get; set; }
   public string? Overview { get; set; }
   public Genre[]? Genres { get; set; }
+  public string? HighResPosterPath { get; set; }
 
   // Extra TvShow Item Properties
   public string[]? OriginCountry { get; set; }
