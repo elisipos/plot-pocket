@@ -58,7 +58,7 @@ public class Episode {
     public string? EpisodeType { get; set; }
 
     [JsonPropertyName("runtime")]
-    public int Runtime { get; set; }
+    public int? Runtime { get; set; }
 
     [JsonPropertyName("season_number")]
     public int SeasonNumber { get; set; }
@@ -130,10 +130,10 @@ public class TvShow : ApiMediaItem {
     public string? LastAirDate { get; set; }
 
     [JsonPropertyName("last_episode_to_air")]
-    public Episode LastEpisodeToAir { get; set; }
+    public Episode? LastEpisodeToAir { get; set; }
 
     [JsonPropertyName("next_episode_to_air")]
-    public Episode NextEpisodeToAir { get; set; }
+    public Episode? NextEpisodeToAir { get; set; }
 
     [JsonPropertyName("number_of_episodes")]
     public int? NumberOfEpisodes { get; set; }

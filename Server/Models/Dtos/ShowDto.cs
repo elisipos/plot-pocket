@@ -37,5 +37,5 @@ public class ShowDto {
   public Episode NextEpisodeToAir { get; set; }
   public int? NumberOfEpisodes { get; set; }
   public int? NumberOfSeasons { get; set; }
-  public Season[] Seasons { get; set; }
+  public SeasonDto[] Seasons { get; set; }
 }

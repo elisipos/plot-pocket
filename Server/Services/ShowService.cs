@@ -82,7 +82,13 @@ public class ShowService {
     public async Task<ShowDto> TvShowToShowDto(TvShow tvShow, string? userId) {
         var showDto = _mapper.Map<ShowDto>(tvShow);
         showDto.HighResPosterPath = _SecureImgUrl + _OriginalImgSize + showDto.PosterPath;
+        
+        foreach(SeasonDto s in showDto.Seasons) {
+            s.PosterPath = _SecureImgUrl + _SmallImgSize + s.PosterPath;
+        }
+
         showDto.PosterPath = _SecureImgUrl + _SmallImgSize + showDto.PosterPath;
+
         showDto.Type = "tv";
 
         int existingShowId = null != userId ? await ShowExistsForLoggedInUser(tvShow.Id, userId) : 0;

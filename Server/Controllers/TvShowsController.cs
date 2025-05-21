@@ -35,7 +35,7 @@ namespace Server.Controllers
 
             ShowDto tvShowDto = await _ShowService.TvShowToShowDto(tvShow, user?.Id);
 
-            return tvShowDto;
+            return Ok(tvShowDto);
         }
 
 

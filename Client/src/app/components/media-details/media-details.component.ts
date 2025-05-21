@@ -4,10 +4,13 @@ import { MoviesService } from '../../services/movies.service';
 import { MediaItem } from '../../models/media-item';
 import { CommonModule } from '@angular/common';
 import { TvShowService } from '../../services/tv-show.service';
+import { SeasonSelectorComponent } from "../seasons/season-selector/season-selector.component";
+import { SeasonDisplayComponent } from "../seasons/season-display/season-display.component";
+import { Season } from '../../models/tvshow/season';
 
 @Component({
   selector: 'app-media-details',
-  imports: [CommonModule],
+  imports: [CommonModule, SeasonSelectorComponent, SeasonDisplayComponent],
   templateUrl: './media-details.component.html',
   styleUrl: './media-details.component.css'
 })
@@ -19,6 +22,11 @@ export class MediaDetailsComponent implements OnInit{
   public showId!: string;
   public showType!: string;
   public show!: MediaItem;
+  public selectedSeason!: Season;
+
+  public onSeasonSelected(season: Season) {
+    this.selectedSeason = season;
+  }
 
   constructor(private route: ActivatedRoute) {}
 

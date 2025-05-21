@@ -13,13 +13,13 @@
             <p class="text-white text-sm ml-1 fake-bullet-right">{{this.show.type.toUpperCase()}}</p>
           </span>
 
-          <span class="fake-bullet-right mr-3.5">
+          <span class="mr-3.5">
             <span class="text-sm align-text-top" *ngFor="let genre of this.show.genres">
               <span class="ml-2">{{genre.name}}</span>
             </span>
           </span>
 
-          <span class="flex ml-2 items-center text-sm">{{this.convertToHrsMin(this.show.runtime)}}</span>
+          <span class="flex ml-2 items-center text-sm fake-bullet-left" *ngIf="this.show.runtime">{{this.convertToHrsMin(this.show.runtime)}}</span>
 
         </div>
 
@@ -42,6 +42,18 @@
           <a href={{this.show.homepage}} target="_blank" class="hover:text-gray-300">{{this.show.homepage}}</a>
         </div>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="this.show.type == 'tv'">
+  <div class="container mx-auto w-3/4">
+    <div class="block flex-row grid-cols-2 items-center p-10">
+      <div class="col-1 font-semibold text-3xl mb-5">Seasons</div>
+      <div>
+        <app-season-selector [seasonsArr]="this.show.seasons" (outputSeason)="onSeasonSelected($event)"></app-season-selector>
+        <app-season-display [inputSeason]="this.selectedSeason"></app-season-display>
       </div>
     </div>
   </div>
