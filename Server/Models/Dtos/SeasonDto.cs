@@ -5,6 +5,7 @@ public class SeasonDto {
     public string Name { get; set; }
     public string? Overview { get; set; }
     public string PosterPath { get; set; }
+    public string HighResPosterPath { get; set; }
     public int? SeasonNumber { get; set; }
     public float VoteAverage { get; set; }
 }

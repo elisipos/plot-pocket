@@ -4,7 +4,8 @@ export interface Season {
   id: number;
   name: string;
   overview: string;
-  poster_path: string;
+  posterPath: string;
+  highResPosterPath: string;
   seasonNumber: number;
   voteAverage: number;
 }

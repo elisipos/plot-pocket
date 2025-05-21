@@ -10,10 +10,11 @@ import { CommonModule } from '@angular/common';
 })
 export class SeasonDisplayComponent implements OnInit{
 
+  @Input() seasonsArr!: Season[];
   @Input() inputSeason: Season | null = null;
 
   ngOnInit(): void {
-
+    this.inputSeason = this.seasonsArr[0];
   }
 
 }

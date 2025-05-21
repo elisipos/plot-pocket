@@ -84,7 +84,10 @@ public class ShowService {
         showDto.HighResPosterPath = _SecureImgUrl + _OriginalImgSize + showDto.PosterPath;
         
         foreach(SeasonDto s in showDto.Seasons) {
-            s.PosterPath = _SecureImgUrl + _SmallImgSize + s.PosterPath;
+            if(s.PosterPath != null) {
+                s.PosterPath = _SecureImgUrl + _SmallImgSize + s.PosterPath;
+                s.HighResPosterPath = _SecureImgUrl + _OriginalImgSize + s.PosterPath;
+            }
         }
 
         showDto.PosterPath = _SecureImgUrl + _SmallImgSize + showDto.PosterPath;

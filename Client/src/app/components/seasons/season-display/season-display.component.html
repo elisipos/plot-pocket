@@ -1,10 +1,31 @@
-<div class="container mx-auto flex-row grid-cols-2 py-5">
-  <div *ngIf="this.inputSeason?.poster_path">
-    <img class="w-full max-w-xs min-w-2xs" [src]="this.inputSeason?.poster_path" alt="Season Poster">
-  </div>
-  <div *ngIf="this.inputSeason?.overview">
-    <div class="font-semibold text-xl">Season Overview</div>
-    <div class="px-2">{{this.inputSeason?.overview}}</div>
-    <div class="px-2">POSTER PATH: {{this.inputSeason?.poster_path}}</div>
+<div class="container mx-auto w-full">
+  <div class="flex flex-row grid-cols-2 py-5 items-center">
+
+    <div *ngIf="this.inputSeason?.posterPath">
+      <img class="max-w-sm mr-5" src="{{this.inputSeason?.highResPosterPath || this.inputSeason?.posterPath}}" alt="Season Poster">
+    </div>
+
+    <div>
+      <div class="my-10">
+        <div *ngIf="this.inputSeason?.name">
+          <div class="font-semibold text-3xl">{{this.inputSeason?.name}}</div>
+        </div>
+
+        <div *ngIf="this.inputSeason?.airDate">
+          <div class="text-gray-600 text-lg">Aired {{this.inputSeason?.airDate}}</div>
+        </div>
+  
+        <div *ngIf="this.inputSeason?.episodeCount">
+          <div class="text-gray-600 text-lg">{{this.inputSeason?.episodeCount}} EP</div>
+        </div>
+      </div>
+
+      <div *ngIf="this.inputSeason?.overview">
+        <div class="font-semibold text-xl">Season Overview</div>
+        <div class="w-full">{{this.inputSeason?.overview}}</div>
+      </div>
+
+    </div>
+
   </div>
 </div>
