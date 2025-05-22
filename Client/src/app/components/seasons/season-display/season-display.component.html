@@ -2,7 +2,14 @@
   <div class="flex flex-row grid-cols-2 py-5 items-center">
 
     <div *ngIf="this.inputSeason?.posterPath">
-      <img class="max-w-sm mr-5" src="{{this.inputSeason?.highResPosterPath || this.inputSeason?.posterPath}}" alt="Season Poster">
+      <div *ngIf="loadingPoster" class="absolute top-0 left-0 w-full h-full bg-gray-300 animate pulse rounded-md"></div>
+      <img 
+      *ngIf="inputSeason" 
+      class="max-w-sm mr-5 transition duration-300"
+      [style.opacity]="loadingPoster ? 0 : 1" 
+      [src]="this.inputSeason?.highResPosterPath || this.inputSeason?.posterPath"
+      alt="Season Poster"
+      (load)="loadingPoster = false">
     </div>
 
     <div>

@@ -10,8 +10,19 @@ import { CommonModule } from '@angular/common';
 })
 export class SeasonDisplayComponent implements OnInit{
 
+  loadingPoster: boolean = true;
+  private _inputSeason: Season | null = null;
+
   @Input() seasonsArr!: Season[];
-  @Input() inputSeason: Season | null = null;
+
+  @Input() set inputSeason(value: Season | null) {
+    this._inputSeason = value;
+    this.loadingPoster = true;
+  }
+
+  get inputSeason(): Season | null { 
+    return this._inputSeason;
+  }
 
   ngOnInit(): void {
     this.inputSeason = this.seasonsArr[0];
