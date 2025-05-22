@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Season } from '../../../models/tvshow/season';
 import { CommonModule } from '@angular/common';
+import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 
 @Component({
   selector: 'app-season-selector',
-  imports: [CommonModule],
+  imports: [CommonModule, ClickOutsideDirective],
   templateUrl: './season-selector.component.html',
   styleUrl: './season-selector.component.css'
 })
