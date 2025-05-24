@@ -1,8 +1,17 @@
 <div class="bg-slate-800 p-10">
   <div class="container mx-auto w-3/4">
-    <div class="flex flex-row grid-cols-2 items-center  text-white">
-      <img class="w-full max-w-xs min-w-2xs mr-5 skeleton" src="{{this.show.highResPosterPath || this.show.highResBackdropPath}}" alt="Show poster">
-      <div class="">
+    <div class="flex flex-row grid-cols-2 items-center text-white">
+
+      <div class="relative max-w-sm max-h-full mr-5">
+        <div *ngIf="loadingPoster" class="absolute top-0 left-0 h-full w-full bg-gray-300 animate-pulse rounded-sm"></div>
+        <img
+        class="w-full max-w-xs min-w-2xs mr-5"
+        (load)="loadingPoster = false"
+        [style.opacity]="loadingPoster ? 0 : 1"
+        src="{{this.show.highResPosterPath || this.show.highResBackdropPath}}">
+      </div>
+
+      <div>
         <div class="text-4xl font-semibold">{{this.show.title}}</div>
         <div class="flex mb-10">
 

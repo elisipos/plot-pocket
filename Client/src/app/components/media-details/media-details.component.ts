@@ -28,6 +28,8 @@ export class MediaDetailsComponent implements OnInit{
     this.selectedSeason = season;
   }
 
+  public loadingPoster: boolean = true;
+
   constructor(private route: ActivatedRoute) {}
 
   public convertToHrsMin(time: number): string {

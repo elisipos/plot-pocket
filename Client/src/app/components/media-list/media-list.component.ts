@@ -234,7 +234,6 @@ export class MediaListComponent implements OnInit{
 
     this.handleBtnData(0, this.currentRoute)
     this.changeList(this.selectedOption, this.selectedType);
-    console.log(this.mediaList$);
   }
 
 }

@@ -1,7 +1,7 @@
-<div class="bg-slate-900 shadow-lg rounded-lg overflow-hidden hover:cursor-pointer hover:scale-105 transition" [routerLink]="[`/media/${show!.type}/${show!.id}`]">
+<div class="bg-slate-900 shadow-lg rounded-lg overflow-hidden hover:cursor-pointer hover:scale-105 transition">
   <!-- Image section -->
   <div class="relative w-full flex-shrink-0">
-      <img class="w-full" src="{{show!.posterPath || show!.backdropPath}}" alt="Show poster">
+      <img class="w-full" src="{{show!.posterPath || show!.backdropPath}}" alt="Show poster" [routerLink]="[`/media/${show!.type}/${show!.id}`]">
       
       <!-- Position the bookmark icon absolutely within the image container -->
       <div

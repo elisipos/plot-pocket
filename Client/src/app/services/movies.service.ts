@@ -29,7 +29,6 @@ export class MoviesService {
     return this._http.get<MediaItem>(`/api/movies/${id}`).pipe(
       tap(mediaItem => {
         this._movieSubject.next(mediaItem);
-        console.log(this.movie$)
       })
     )
   }

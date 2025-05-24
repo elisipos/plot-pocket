@@ -50,7 +50,6 @@ export class RegisterComponent {
 
     // Disable the form
     this.registerForm.disable();
-    console.log(this.registerForm.value)
 
     this._authService.register(this.registerForm.value).subscribe({
       next: (resp) => {

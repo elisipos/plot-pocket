@@ -29,7 +29,6 @@ export class TvShowService {
     return this._http.get<MediaItem>(`/api/tvshows/${id}`).pipe(
       tap(mediaItem => {
         this._tvShowSubject.next(mediaItem);
-        console.log(this.tvShow$);
       })
     )
   }

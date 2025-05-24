@@ -11,7 +11,7 @@
       <img 
       *ngIf="this.inputSeason" 
       class="max-w-sm"
-      [src]="this.inputSeason?.highResPosterPath || this.inputSeason?.posterPath"
+      [src]="this.inputSeason.highResPosterPath || this.inputSeason.posterPath"
       [style.opacity]="loadingPoster ? 0 : 1"
       alt="Season Poster"
       (load)="loadingPoster = false">
