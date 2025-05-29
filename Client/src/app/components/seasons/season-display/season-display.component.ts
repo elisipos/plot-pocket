@@ -17,7 +17,9 @@ export class SeasonDisplayComponent implements OnInit{
 
   @Input() set inputSeason(value: Season | null) {
     this._inputSeason = value;
-    this.loadingPoster = true;
+    if(this._inputSeason != this._inputSeason){
+      this.loadingPoster = true;
+    }
   }
 
   get inputSeason(): Season | null { 
