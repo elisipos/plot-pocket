@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <None Update="appsettings.json" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
   <ItemGroup>
