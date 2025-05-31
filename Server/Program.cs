@@ -43,6 +43,14 @@ builder.Services.AddSession(options => {
 
 });
 
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowNetlify", policy => {
+        policy.WithOrigins("https://animated-sunshine-e1d49b.netlify.app/")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -73,6 +81,7 @@ app.MapControllerRoute(
 //    .WithStaticAssets();
 
 app.MapFallbackToFile("index.html");
+app.UseCors("AllowNetlify");
 
 app.Run();
 
