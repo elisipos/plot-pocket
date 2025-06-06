@@ -27,11 +27,15 @@ export class AuthService {
   }
 
   public register(details: EmailLoginDetails): Observable<User> {
-    return this._http.post<User>(`${environment.apiUrl}/auth/register`, details);
+    return this._http.post<User>(`${environment.apiUrl}/auth/register`, details, {
+      withCredentials: true
+    });
   }
 
   public login(details: EmailLoginDetails): Observable<User> {
-    return this._http.post<User>(`${environment.apiUrl}/auth/login`, details)
+    return this._http.post<User>(`${environment.apiUrl}/auth/login`, details, {
+      withCredentials: true
+    })
       .pipe(tap(user => {
         localStorage.setItem(this._userKey, JSON.stringify(user));
         this._userSubject.next(user);
@@ -39,7 +43,9 @@ export class AuthService {
   }
 
   public logout(): Observable<any> {
-    return this._http.post<any>(`${environment.apiUrl}/auth/logout`, {})
+    return this._http.post<any>(`${environment.apiUrl}/auth/logout`, {}, {
+      withCredentials: true
+    })
       .pipe(tap(() => {
         localStorage.removeItem(this._userKey);
         this._userSubject.next(null);
