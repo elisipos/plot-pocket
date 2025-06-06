@@ -19,7 +19,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureApplicationCookie(options => {
     options.Cookie.SameSite = SameSiteMode.None;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.HttpOnly = true;
+    // options.Cookie.HttpOnly = true;
 
     options.Events.OnRedirectToLogin = context => {
         if (context.Request.Path.StartsWithSegments("/api")) {
