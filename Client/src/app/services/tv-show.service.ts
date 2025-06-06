@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { MediaItem } from '../models/media-item';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class TvShowService {
   constructor() { }
 
   public getTvShowById(id: string): Observable<MediaItem> {
-    return this._http.get<MediaItem>(`/api/tvshows/${id}`).pipe(
+    return this._http.get<MediaItem>(`${environment.apiUrl}/tvshows/${id}`).pipe(
       tap(mediaItem => {
         this._tvShowSubject.next(mediaItem);
       })
@@ -34,7 +35,7 @@ export class TvShowService {
   }
 
   public getTvShowsAiringToday(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/tvshows/airing-today`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/airing-today`).pipe(
       tap(mediaItems => {
         this._tvShowsListSubject.next(mediaItems);
       })
@@ -42,7 +43,7 @@ export class TvShowService {
   }
 
   public getTvShowsTopRated(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/tvshows/top-rated`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/top-rated`).pipe(
       tap(mediaItems => {
         this._tvShowsListSubject.next(mediaItems);
       })
@@ -50,7 +51,7 @@ export class TvShowService {
   }
 
   public getTvShowsPopular(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/tvshows/popular`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/popular`).pipe(
       tap(mediaItems => {
         this._tvShowsListSubject.next(mediaItems);
       })

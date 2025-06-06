@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { MediaItem } from '../models/media-item';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class MoviesService {
   constructor() { }
 
   public getMovieById(id: string): Observable<MediaItem> {
-    return this._http.get<MediaItem>(`/api/movies/${id}`).pipe(
+    return this._http.get<MediaItem>(`${environment.apiUrl}/movies/${id}`).pipe(
       tap(mediaItem => {
         this._movieSubject.next(mediaItem);
       })
@@ -34,7 +35,7 @@ export class MoviesService {
   }
 
   public getMoviesNowPlaying(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/movies/now-playing`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/now-playing`).pipe(
       tap(mediaItems => {
         this._moviesListSubject.next(mediaItems);
       })
@@ -42,7 +43,7 @@ export class MoviesService {
   }
 
   public getMoviesTopRated(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/movies/top-rated`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/top-rated`).pipe(
       tap(mediaItems => {
         this._moviesListSubject.next(mediaItems);
       })
@@ -50,7 +51,7 @@ export class MoviesService {
   }
 
   public getMoviesPopular(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/movies/popular`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/popular`).pipe(
       tap(mediaItems => {
         this._moviesListSubject.next(mediaItems);
       })

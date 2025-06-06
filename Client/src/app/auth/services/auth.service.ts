@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../models/auth-user';
 import { EmailLoginDetails } from '../models/email-login-details';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,11 @@ export class AuthService {
   }
 
   public register(details: EmailLoginDetails): Observable<User> {
-    return this._http.post<User>(`/api/auth/register`, details);
+    return this._http.post<User>(`${environment.apiUrl}/auth/register`, details);
   }
 
   public login(details: EmailLoginDetails): Observable<User> {
-    return this._http.post<User>(`/api/auth/login`, details)
+    return this._http.post<User>(`${environment.apiUrl}/auth/login`, details)
       .pipe(tap(user => {
         localStorage.setItem(this._userKey, JSON.stringify(user));
         this._userSubject.next(user);
@@ -38,7 +39,7 @@ export class AuthService {
   }
 
   public logout(): Observable<any> {
-    return this._http.post<any>(`/api/auth/logout`, {})
+    return this._http.post<any>(`${environment.apiUrl}/auth/logout`, {})
       .pipe(tap(() => {
         localStorage.removeItem(this._userKey);
         this._userSubject.next(null);

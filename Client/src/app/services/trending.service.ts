@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { MediaItem } from '../models/media-item';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class TrendingService {
   constructor() { }
 
   public getTrendingAll(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/trending/all`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/all`).pipe(
       tap(mediaItems => {
         this._trendingListSubject.next(mediaItems);
       })
@@ -27,7 +28,7 @@ export class TrendingService {
   }
 
   public getTrendingMovies(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/trending/movies`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/movies`).pipe(
       tap(mediaItems => {
         this._trendingListSubject.next(mediaItems);
       })
@@ -35,7 +36,7 @@ export class TrendingService {
   }
 
   public getTrendingTvShows(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`/api/trending/tvshows`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/tvshows`).pipe(
       tap(mediaItems => {
         this._trendingListSubject.next(mediaItems);
       })
