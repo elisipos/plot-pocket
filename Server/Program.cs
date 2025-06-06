@@ -66,8 +66,8 @@ else
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowNetlify");
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapStaticAssets();
@@ -81,7 +81,6 @@ app.MapControllerRoute(
 //    .WithStaticAssets();
 
 app.MapFallbackToFile("index.html");
-app.UseCors("AllowNetlify");
 
 app.Run();
 
