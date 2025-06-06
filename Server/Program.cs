@@ -47,7 +47,8 @@ builder.Services.AddCors(options => {
     options.AddPolicy("AllowNetlify", policy => {
         policy.WithOrigins("https://animated-sunshine-e1d49b.netlify.app")
         .AllowAnyMethod()
-        .AllowAnyHeader();
+        .AllowAnyHeader()
+        .AllowCredentials();
     });
 });
 
@@ -68,6 +69,7 @@ else
 app.UseHttpsRedirection();
 app.UseCors("AllowNetlify");
 app.UseRouting();
+app.UseSession();
 app.UseAuthorization();
 
 app.MapStaticAssets();
