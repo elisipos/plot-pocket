@@ -1,7 +1,7 @@
 {
   "/api": {
       "target": "https://plot-pocket.onrender.com",
-      "secure": true,
+      "secure": false,
       "changeOrigin": true
   }
 }

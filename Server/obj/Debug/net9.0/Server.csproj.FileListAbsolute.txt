@@ -1241,3 +1241,9 @@ C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\n
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\obj\Debug\net9.0\ref\Server.dll
 C:\Users\elijs\OneDrive\Desktop\git repos\ASP.NET\plot-pocket\Server\bin\Debug\net9.0\app.db
 C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\app.db
+C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\out\web.config
+C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\out\appsettings.Development.json
+C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\out\appsettings.json
+C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\out\Server.deps.json
+C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\out\Server.runtimeconfig.json
+C:\Users\admin\Desktop\git repos\asp.net\plot-pocket\Server\bin\Debug\net9.0\out\Server.staticwebassets.endpoints.json

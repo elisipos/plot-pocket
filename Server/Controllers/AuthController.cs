@@ -51,7 +51,7 @@ namespace Server.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login([FromBody] EmailLoginDetails details) {
             // retrieve user
-            IdentityUser? user = await _userManager
+            ApplicationUser? user = await _userManager
                 .FindByEmailAsync(details.Email);
 
             if(null == user) {
