@@ -20,11 +20,15 @@ export class BookmarkService {
   constructor() { }
 
   public addBookmark(mediaItem: MediaItem): Observable<any> {
-    return this._http.post<MediaItem>(`${environment.apiUrl}/shows/add`, mediaItem)
+    return this._http.post<MediaItem>(`${environment.apiUrl}/shows/add`, mediaItem, {
+      withCredentials: true
+    })
   }
 
   public removeBookmark(showApiId: number): Observable<any> {
-    return this._http.delete<null>(`${environment.apiUrl}/shows/remove/${showApiId}`)
+    return this._http.delete<null>(`${environment.apiUrl}/shows/remove/${showApiId}`, {
+      withCredentials: true
+    })
   }
 
   public getAllBookmarkedMedia(): Observable<MediaItem[]> {
