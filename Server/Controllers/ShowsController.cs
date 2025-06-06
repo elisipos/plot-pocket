@@ -32,6 +32,9 @@ namespace MyApp.Namespace
             Console.WriteLine("\n\n\nREACHED\n\n\n");
             if(null == show) return BadRequest();
 
+            Console.WriteLine("Authenticated: " + User.Identity?.IsAuthenticated);
+            Console.WriteLine("User Name: " + User.Identity?.Name);
+
             ApplicationUser? user = await _userManager.GetUserAsync(User);
             if(null == user) return Unauthorized();
 
