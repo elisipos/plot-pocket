@@ -90,7 +90,7 @@ namespace MyApp.Namespace
         [HttpGet("all")]
         public async Task<ActionResult<ICollection<ShowDto>>> GetAllBookmarkedMedia() {
             ApplicationUser? user = await _userManager.GetUserAsync(User);
-            
+
             Console.WriteLine("\n\nAuthenticated: " + User.Identity?.IsAuthenticated);
             Console.WriteLine("User Name: " + User.Identity?.Name + "\n\n");
 
@@ -107,11 +107,6 @@ namespace MyApp.Namespace
             var bookmarkedDtos = await Task.WhenAll(
                 bookmarkedShows.Select(s => _ShowService.ShowToShowDto(s, user.Id))
             );
-
-            // foreach(ShowDto s in bookmarkedShows){
-            //     ShowDto show = await _ShowService.ShowToShowDto(s, user?.Id);
-            //     shows.Add(show);
-            // }
 
             return Ok(bookmarkedDtos);
         }

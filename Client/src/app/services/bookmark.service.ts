@@ -32,7 +32,9 @@ export class BookmarkService {
   }
 
   public getAllBookmarkedMedia(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/shows/all`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/shows/all`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._bookmarkSubject.next(mediaItems);
       })
