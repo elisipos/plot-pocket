@@ -36,7 +36,10 @@ namespace MyApp.Namespace
             Console.WriteLine("User Name: " + User.Identity?.Name);
 
             ApplicationUser? user = await _userManager.GetUserAsync(User);
-            if(null == user) return Unauthorized();
+            if(null == user) {
+                Console.WriteLine("\n\nUser object is null\n\n");
+                return Unauthorized();
+            }
 
             var existingShow = await _context.Shows.FirstOrDefaultAsync(s => s.Id == show.Id);
 

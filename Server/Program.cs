@@ -37,29 +37,26 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<ShowService>();
 builder.Services.AddSingleton<TMDBService>();
 
-// Use sessions for user authorization
-builder.Services.AddSession(options => {
-    options.IdleTimeout = TimeSpan.FromHours(1);    
-    options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.Name = ".plotpocket.Session";
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
+// // Use sessions for user authorization
+// builder.Services.AddSession(options => {
+//     options.IdleTimeout = TimeSpan.FromHours(1);    
+//     options.Cookie.SameSite = SameSiteMode.None;
+//     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+//     options.Cookie.Name = ".plotpocket.Session";
+//     options.Cookie.HttpOnly = true;
+//     options.Cookie.IsEssential = true;
 
-});
+// });
 
 builder.Services.AddCors(options => 
 {
-    options.AddPolicy("AllowNetlify", policy => {
-        policy.WithOrigins("https://animated-sunshine-e1d49b.netlify.app")
+    options.AddPolicy("AllowAllKnownOrigins", policy => {
+        policy.WithOrigins(
+            "https://animated-sunshine-e1d49b.netlify.app",
+            "http://localhost:5000",
+            "http://localhost:4200")
         .AllowAnyMethod()
         .AllowAnyHeader()
-        .AllowCredentials();
-    });
-    options.AddPolicy("AllowFrontend", policy => {
-        policy.WithOrigins("http://localhost:5000", "http://localhost:4200")
-        .AllowAnyHeader()
-        .AllowAnyMethod()
         .AllowCredentials();
     });
 });
@@ -79,10 +76,9 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowNetlify");
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAllKnownOrigins");
 app.UseRouting();
-app.UseSession();
+// app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
