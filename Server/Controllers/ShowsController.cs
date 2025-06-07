@@ -31,14 +31,8 @@ namespace MyApp.Namespace
         public async Task<ActionResult<ShowDto>> AddBookmark([FromBody] Show show) {
             if(null == show) return BadRequest();
 
-            Console.WriteLine("\n\nAuthenticated: " + User.Identity?.IsAuthenticated);
-            Console.WriteLine("User Name: " + User.Identity?.Name + "\n\n");
-
             ApplicationUser? user = await _userManager.GetUserAsync(User);
-            if(null == user) {
-                Console.WriteLine("\n\nUser object is null\n\n");
-                return Unauthorized();
-            }
+            if(null == user) return Unauthorized();
 
             var existingShow = await _context.Shows.FirstOrDefaultAsync(s => s.Id == show.Id);
 
@@ -56,7 +50,6 @@ namespace MyApp.Namespace
                 bool userHasShowBookmarked = user.Shows.Any(s => s.Id == show.Id);
                 if(!userHasShowBookmarked) {
                     user.Shows.Add(existingShow);
-                    //exisingShow.Users.Add(user);
                 }
             }
 
@@ -72,11 +65,8 @@ namespace MyApp.Namespace
 
             ApplicationUser? user = await _userManager.GetUserAsync(User);
 
-            if(null == user) {
-                return Unauthorized();
-            }
-
-            
+            if(null == user) return Unauthorized();
+    
             var show = _context.Shows.FirstOrDefault(s => s.Id == id);
 
             if(show != null) {
@@ -91,12 +81,7 @@ namespace MyApp.Namespace
         public async Task<ActionResult<ICollection<ShowDto>>> GetAllBookmarkedMedia() {
             ApplicationUser? user = await _userManager.GetUserAsync(User);
 
-            Console.WriteLine("\n\nAuthenticated: " + user?.Id);
-
-            if(null == user){
-                Console.WriteLine("\n\nUser object is null\n\n");
-                return Unauthorized();
-            }
+            if(null == user) return Unauthorized();
 
             ICollection<ShowDto> shows = new List<ShowDto>();
             var bookmarkedShows = await _context.Shows
