@@ -48,11 +48,18 @@ builder.Services.AddSession(options => {
 
 });
 
-builder.Services.AddCors(options => {
+builder.Services.AddCors(options => 
+{
     options.AddPolicy("AllowNetlify", policy => {
         policy.WithOrigins("https://animated-sunshine-e1d49b.netlify.app")
         .AllowAnyMethod()
         .AllowAnyHeader()
+        .AllowCredentials();
+    });
+    options.AddPolicy("AllowFrontend", policy => {
+        policy.WithOrigins("http://localhost:5000", "http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
         .AllowCredentials();
     });
 });
@@ -73,6 +80,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseCors("AllowNetlify");
+app.UseCors("AllowFrontend");
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
