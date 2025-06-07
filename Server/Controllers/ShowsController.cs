@@ -29,11 +29,10 @@ namespace MyApp.Namespace
 
         [HttpPost("add")]
         public async Task<ActionResult<ShowDto>> AddBookmark([FromBody] Show show) {
-            Console.WriteLine("\n\n\nREACHED\n\n\n");
             if(null == show) return BadRequest();
 
-            Console.WriteLine("Authenticated: " + User.Identity?.IsAuthenticated);
-            Console.WriteLine("User Name: " + User.Identity?.Name);
+            Console.WriteLine("\n\nAuthenticated: " + User.Identity?.IsAuthenticated);
+            Console.WriteLine("User Name: " + User.Identity?.Name + "\n\n");
 
             ApplicationUser? user = await _userManager.GetUserAsync(User);
             if(null == user) {
@@ -91,7 +90,12 @@ namespace MyApp.Namespace
         [HttpGet("all")]
         public async Task<ActionResult<ICollection<ShowDto>>> GetAllBookmarkedMedia() {
             ApplicationUser? user = await _userManager.GetUserAsync(User);
+            
+            Console.WriteLine("\n\nAuthenticated: " + User.Identity?.IsAuthenticated);
+            Console.WriteLine("User Name: " + User.Identity?.Name + "\n\n");
+
             if(null == user){
+                Console.WriteLine("\n\nUser object is null\n\n");
                 return Unauthorized();
             }
 
