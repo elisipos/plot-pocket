@@ -50,8 +50,6 @@ public class ShowService {
             title = (mediaItem as Movie)?.Title ?? (mediaItem as TvShow)?.Name;
         }
 
-        Console.WriteLine("\nMediaItemToShowDto: " + existingShowId + ", " + await ShowExistsForLoggedInUser(mediaItem.Id, userId) + "\n");
-
         return new ShowDto {
             Id = mediaItem.Id,
             ShowApiId = existingShowId,
