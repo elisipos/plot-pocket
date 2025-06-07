@@ -28,6 +28,7 @@ namespace Server.Controllers
         [HttpGet("all")]
         public async Task<ActionResult<ICollection<ShowDto>>> GetTrendingAll() {
             ApplicationUser? user = await _userManager.GetUserAsync(User);
+            Console.WriteLine("User: " + user?.Id);
             TrendingResponse mediaItems = await _TMDBService.GetTrendingShowsAsync();
 
             if(null == mediaItems) {

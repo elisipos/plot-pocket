@@ -91,8 +91,7 @@ namespace MyApp.Namespace
         public async Task<ActionResult<ICollection<ShowDto>>> GetAllBookmarkedMedia() {
             ApplicationUser? user = await _userManager.GetUserAsync(User);
 
-            Console.WriteLine("\n\nAuthenticated: " + User.Identity?.IsAuthenticated);
-            Console.WriteLine("User Name: " + User.Identity?.Name + "\n\n");
+            Console.WriteLine("\n\nAuthenticated: " + user?.Id);
 
             if(null == user){
                 Console.WriteLine("\n\nUser object is null\n\n");

@@ -20,7 +20,9 @@ export class TrendingService {
   constructor() { }
 
   public getTrendingAll(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/all`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/all`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._trendingListSubject.next(mediaItems);
       })
@@ -28,7 +30,9 @@ export class TrendingService {
   }
 
   public getTrendingMovies(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/movies`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/movies`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._trendingListSubject.next(mediaItems);
       })
@@ -36,7 +40,9 @@ export class TrendingService {
   }
 
   public getTrendingTvShows(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/tvshows`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/trending/tvshows`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._trendingListSubject.next(mediaItems);
       })

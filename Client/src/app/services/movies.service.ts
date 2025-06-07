@@ -35,7 +35,9 @@ export class MoviesService {
   }
 
   public getMoviesNowPlaying(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/now-playing`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/now-playing`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._moviesListSubject.next(mediaItems);
       })
@@ -43,7 +45,9 @@ export class MoviesService {
   }
 
   public getMoviesTopRated(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/top-rated`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/top-rated`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._moviesListSubject.next(mediaItems);
       })
@@ -51,7 +55,9 @@ export class MoviesService {
   }
 
   public getMoviesPopular(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/popular`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/movies/popular`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._moviesListSubject.next(mediaItems);
       })

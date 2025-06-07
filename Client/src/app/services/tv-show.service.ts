@@ -35,7 +35,9 @@ export class TvShowService {
   }
 
   public getTvShowsAiringToday(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/airing-today`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/airing-today`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._tvShowsListSubject.next(mediaItems);
       })
@@ -43,7 +45,9 @@ export class TvShowService {
   }
 
   public getTvShowsTopRated(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/top-rated`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/top-rated`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._tvShowsListSubject.next(mediaItems);
       })
@@ -51,7 +55,9 @@ export class TvShowService {
   }
 
   public getTvShowsPopular(): Observable<MediaItem[]> {
-    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/popular`).pipe(
+    return this._http.get<MediaItem[]>(`${environment.apiUrl}/tvshows/popular`, {
+      withCredentials: true
+    }).pipe(
       tap(mediaItems => {
         this._tvShowsListSubject.next(mediaItems);
       })

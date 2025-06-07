@@ -40,7 +40,7 @@ public class ShowService {
 
         var date = DateTime.TryParse(dateToParse, out DateTime parsedDate) ? parsedDate : (DateTime?)null;
 
-        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(mediaItem.Id, userId) : 0;
+        int existingShowId = await ShowExistsForLoggedInUser(mediaItem.Id, userId);
         
         string? title;
         if(mediaItem is Trending trendingMedia) {
@@ -49,6 +49,8 @@ public class ShowService {
         } else {
             title = (mediaItem as Movie)?.Title ?? (mediaItem as TvShow)?.Name;
         }
+
+        Console.WriteLine("\nMediaItemToShowDto: " + existingShowId + ", " + await ShowExistsForLoggedInUser(mediaItem.Id, userId) + "\n");
 
         return new ShowDto {
             Id = mediaItem.Id,
@@ -62,7 +64,7 @@ public class ShowService {
 
     public async Task<ShowDto> ShowToShowDto(Show show, string? userId){
         var showDto =_mapper.Map<ShowDto>(show);
-        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(show.Id, userId) : 0;
+        int existingShowId = await ShowExistsForLoggedInUser(show.Id, userId);
         showDto.ShowApiId = existingShowId;
         return showDto;
     }    
@@ -73,7 +75,7 @@ public class ShowService {
         showDto.PosterPath = _SecureImgUrl + _SmallImgSize + showDto.PosterPath;
         showDto.Type = "movie";
 
-        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(movie.Id, userId) : 0;
+        int existingShowId = await ShowExistsForLoggedInUser(movie.Id, userId);
         showDto.ShowApiId = existingShowId;
 
         return showDto;
@@ -94,7 +96,7 @@ public class ShowService {
 
         showDto.Type = "tv";
 
-        int existingShowId = null != userId ? await ShowExistsForLoggedInUser(tvShow.Id, userId) : 0;
+        int existingShowId = await ShowExistsForLoggedInUser(tvShow.Id, userId);
         showDto.ShowApiId = existingShowId;
 
         return showDto;
