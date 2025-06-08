@@ -88,6 +88,13 @@ namespace MyApp.Namespace
                 .Where(s => s.Users.Any(u => u.Id == user.Id))
                 .ToListAsync();
 
+            if(!bookmarkedShows.Any()) {
+                bookmarkedShows.Add(new Show{
+                    Id = -1,
+                    }
+                );
+            }
+
             var bookmarkedDtos = await Task.WhenAll(
                 bookmarkedShows.Select(s => _ShowService.ShowToShowDto(s, user.Id))
             );

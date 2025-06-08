@@ -14,10 +14,11 @@ import { BookmarkService } from '../../services/bookmark.service';
 import { MoviesService } from '../../services/movies.service';
 import { TvShowService } from '../../services/tv-show.service';
 import { ShowCardComponent } from "../show-card/show-card.component";
+import { SkeletonCardComponent } from "../skeleton-card/skeleton-card.component";
 
 @Component({
   selector: 'app-media-list',
-  imports: [SearchBarComponent, SearchBarComponent, CommonModule, RadioButtonComponent, NameSearchPipe, ShowCardComponent],
+  imports: [SearchBarComponent, SearchBarComponent, CommonModule, RadioButtonComponent, NameSearchPipe, ShowCardComponent, SkeletonCardComponent],
   templateUrl: './media-list.component.html',
   styleUrl: './media-list.component.css'
 })

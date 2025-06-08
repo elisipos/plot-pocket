@@ -36,6 +36,7 @@ export class BookmarkService {
       withCredentials: true
     }).pipe(
       tap(mediaItems => {
+        console.log("mediaItems: ", mediaItems);
         this._bookmarkSubject.next(mediaItems);
       })
     );
