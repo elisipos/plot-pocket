@@ -19,7 +19,7 @@
           <p class="text-gray-400 w-2/3 text-center">No media to show! For bookmarks, click the bookmark icon to save a show and have it appear here.</p>
         </div>
 
-        <div *ngIf="mediaList[0]. id !== -1" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-2/3 mx-auto">
+        <div *ngIf="mediaList[0].id !== -1" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-2/3 mx-auto">
           <div *ngFor="let show of mediaList | nameSearch : (searchQuery$ | async)">
               <app-show-card [user]="user" [show]="show" (showToBookmark)="handleToggleData($event)"></app-show-card>
           </div>
@@ -28,7 +28,7 @@
       </div>
 
       <!-- OTHERWISE SHOW SKELETON -->
-      <div *ngIf="mediaList.length == 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-2/3 mx-auto">
+      <div *ngIf="mediaList.length == 0 || mediaList == undefined" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-2/3 mx-auto">
 
         <div *ngFor="let _ of [].constructor(20)">
           <app-skeleton-card></app-skeleton-card>
