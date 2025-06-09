@@ -31,14 +31,16 @@ public class ShowService {
      **/
      
     public async Task<ShowDto> MediaItemToShowDto(ApiMediaItem mediaItem, string? userId) {
-        string? dateToParse = mediaItem switch {
+        string? date = mediaItem switch {
             Movie movie => movie.ReleaseDate,
             TvShow tvShow => tvShow.FirstAirDate,
             Trending trendingShow => trendingShow.ReleaseDate ?? trendingShow.FirstAirDate,
             _ => null
         };
 
-        var date = DateTime.TryParse(dateToParse, out DateTime parsedDate) ? parsedDate : (DateTime?)null;
+        /* Commented out because ShowDto no longer required parsed DateTime?. */
+
+        // var date = DateTime.TryParse(dateToParse, out DateTime parsedDate) ? parsedDate : (DateTime?)null;
 
         int existingShowId = await ShowExistsForLoggedInUser(mediaItem.Id, userId);
         
