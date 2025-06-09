@@ -33,7 +33,7 @@ export class MediaListComponent implements OnInit{
 
   public currentRoute: string = '';
   
-  public mediaList$: Observable<MediaItem[]> | null | undefined = null;
+  public mediaList$: Observable<MediaItem[]> | null = null;
   public user: User | null = null;
   public selectedOption: string = '';
   public selectedType: string = '';
